@@ -17,6 +17,7 @@ Country.init(
     {
         sequelize: db,
         modelName: 'country',
+        timestamps: true,
     }
 );
 module.exports = Country;

@@ -15,7 +15,7 @@ City.init(
             allowNull: false,
         },
         city: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: Country,

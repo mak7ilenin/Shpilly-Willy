@@ -8,17 +8,22 @@ module.exports.createDb = async function createDb() {
         user: 'root',
         password: ''
     });
-
+    
     // Create database if not exist
     connection.query('SHOW DATABASES WHERE `database` = "shpily_willy"', 
         function(err, result) {
             if(result.length != 0) {
+                // Database already created
                 console.log('The database has already been created!');
+                createSeqConnection();
             } else {
+                // Database not created yet 
                 connection.query(`CREATE DATABASE shpily_willy`, 
                     function(err, result) {
                         if(err == null) {
                             createSeqConnection();
+                        } else {
+                            console.log('An error occurred while creating the database!');
                         }
                     });
             }
