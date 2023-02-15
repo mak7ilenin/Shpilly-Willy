@@ -10,26 +10,29 @@ module.exports.createDb = async function createDb() {
     });
 
     // Create database if not exist
-    connection.query(`CREATE DATABASE IF NOT EXISTS shpily-willy`);
+    connection.query('SHOW DATABASES WHERE `database` = "shpily_willy"', 
+        function(err, result) {
+            if(result.length != 0) {
+                console.log('The database has already been created!');
+            } else {
+                connection.query(`CREATE DATABASE shpily_willy`, 
+                    function(err, result) {
+                        if(err == null) {
+                            createSeqConnection();
+                        }
+                    });
+            }
+        });
 
     // Close the connection
-    connection.end();
+    setTimeout(() => { connection.end() }, 2000);
 }
 
 // Create sequelize connection
-try {
-    const sequelize = new Sequelize('shpily-willy', 'root', '', {
+function createSeqConnection() {
+    const sequelize = new Sequelize('shpily_willy', 'root', '', {
         host: 'localhost',
         dialect: 'mysql'
     });
     module.exports.db = sequelize;
-} catch (error) {
-    createDb()
-        .then(() => {
-            const sequelize = new Sequelize('shpily-willy', 'root', '', {
-                host: 'localhost',
-                dialect: 'mysql'
-            });
-            module.exports.db = sequelize;
-        });
 }

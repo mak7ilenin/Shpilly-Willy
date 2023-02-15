@@ -1,6 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const Language = require('./Language');
-const { db } = require('../database');
+const { db } = require('../config/database');
 
 class User extends Model {}
 User.init(
@@ -27,7 +27,7 @@ User.init(
             allowNull: false,
         },
         gender: {
-            type: ENUM('male', 'female'),
+            type: DataTypes.ENUM('male', 'female'),
             allowNull: false,
         },
         birthDate: {
@@ -42,36 +42,34 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        languages: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            references: {
-                model: Language,
-                key: 'id',
-            }
+        education: {
+            type: DataTypes.ENUM('High school', 'Vocational school', 'Some college', 
+            "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'),
         },
-        professionalStatus: {
-            type: DataTypes.ENUM('Secondary', 'Secondary special', 'Incomplete higher', 
-            'Higher', 'Academic degree', 'Several higher'),
-        },
-        familyStatus: {
-            type: DataTypes.ENUM('Not married / not married', 'Divorced', 
-            'Widower / Widow', 'Other marital status'),
+        relationshipStatus: {
+            type: DataTypes.ENUM('Single', 'Divorced', 
+            'Widower', 'Other relationship status'),
             allowNull: false,
         },
         children: {
-            type: DataTypes.ENUM('Have no children', 'Have children'),
+            type: DataTypes.ENUM('Do not have children', 'Have children'),
             allowNull: false,
         },
         religion: {
             type: DataTypes.ENUM('Atheism', 'Buddhism', 'Hinduism', 
-            'Islam', 'Judaism', 'Catholicism', 'Orthodoxy', 'Protestantism', 'Other'),
+            'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other'),
             allowNull: false,
         },
         description: {
             type: DataTypes.STRING,
             allowNull: false,
         }
+    },
+    {
+        sequelize: db,
+        modelName: 'user',
+        timestamps: true,
+        paranoid: true
     }
-)
+);
 module.exports = User;

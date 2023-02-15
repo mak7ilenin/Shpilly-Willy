@@ -1,9 +1,14 @@
 const { DataTypes, Model } = require('sequelize');
-const { db } = require('../database');
+const { db } = require('../config/database');
 
 class Language extends Model {}
 Language.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -15,5 +20,5 @@ Language.init(
         timestamps: true,
         paranoid: true
     }
-)
+);
 module.exports = Language;
