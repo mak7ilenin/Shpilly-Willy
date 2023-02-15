@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+
+<body>
+    <div class="registration_container">
+        <form action="/submit" method="POST">
+            <div>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <div>
+                <input type="text" name="fullName" placeholder="Full name">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <div>
+                <input type="checkbox" name="gender1" value="male">
+                <label for="gender1">Male</label>
+                <input type="checkbox" name="gender2" value="female">
+                <label for="gender2">Female</label>
+            </div>
+            <div>
+                <label for="birthDate">Enter your birthday</label><br>
+                <input type="date" name="birthDate">
+            </div>
+            <div>
+                <select name="countries" id="countriesList">
+                    <% for (let i = 0; i < countries.length; i++) { %>
+                        <option value="<%=countries[i]%>"><%= countries[i] %></option>
+                    <% } %>
+                </select>
+                <select name="cities" id="citiesList">
+                    <% for (let i = 0; i < cities.length; i++) { %>
+                        <option value="<%=cities[i]%>"><%= cities[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <select name="educations" id="educationsList">
+                    <% for (let i = 0; i < educations.length; i++) { %>
+                        <option value="<%=educations[i]%>"><%= educations[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <select name="relationshipStatus" id="relationshipStatusList">
+                    <% for (let i = 0; i < relationshipStatus.length; i++) { %>
+                        <option value="<%=relationshipStatus[i]%>"><%= relationshipStatus[i] %></option>
+                    <% } %>
+                </select>
+                <select name="childrens" id="childrensList">
+                    <% for (let i = 0; i < childrens.length; i++) { %>
+                        <option value="<%=childrens[i]%>"><%= childrens[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <select name="religions" id="religionsList">
+                    <% for (let i = 0; i < religions.length; i++) { %>
+                        <option value="<%=religions[i]%>"><%= religions[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <textarea name="description" cols="30" rows="6"></textarea>
+            </div>
+            <button class="submit_btn">Registrate</button>
+        </form>
+    </div>
+</body>
+
+</html>
