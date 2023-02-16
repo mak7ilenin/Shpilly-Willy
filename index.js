@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { createDb } = require('./config/database');
+const { addCountries } = require('./data/cities');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -21,17 +22,18 @@ async function configureDb() {
     setTimeout(async () => {
         // Getting the sequelize instance
         const { db } = require('./config/database');
-
+    
         let Country = require('./models/Country');
         let Language = require('./models/Language');
         let City = require('./models/City');
         let User = require('./models/User');
         let UserLanguages = require('./models/UserLanguages');
-
+    
         User.belongsToMany(Language, { through: UserLanguages });
         Language.belongsToMany(User, { through: UserLanguages });
-
-        // await db.sync({ alter: true });
+    
+        await db.sync({ alter: true });
+        addCountries();
     }, 100);
 }
 configureDb();

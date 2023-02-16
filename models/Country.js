@@ -12,12 +12,17 @@ Country.init(
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+        code: {
+            type: DataTypes.CHAR(3),
+            allowNull: false,
+            unique: true
+        },
     },
     {
         sequelize: db,
         modelName: 'country',
-        timestamps: true,
+        timestamps: false,
     }
 );
 module.exports = Country;

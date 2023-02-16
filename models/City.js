@@ -14,12 +14,12 @@ City.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        city: {
-            type: DataTypes.INTEGER,
+        country: {
+            type: DataTypes.CHAR(3),
             allowNull: false,
             references: {
                 model: Country,
-                key: 'id',
+                key: 'code',
             }
         }
     },
