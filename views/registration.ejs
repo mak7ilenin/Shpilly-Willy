@@ -30,16 +30,16 @@
                 <input type="date" name="birthDate">
             </div>
             <div>
-                <select name="countries" id="countriesList" selected="Choose">
+                <select name="countries" id="countriesList" onchange="getCities(this)" selected="Choose">
                     <option value="" selected disabled hidden>Choose</option>
                     <% for (let i = 0; i < countries.length; i++) { %>
-                        <option value="<%=countries[i]%>"><%= countries[i] %></option>
+                        <option value="<%=countries[i].code%>"><%= countries[i].name %></option>
                     <% } %>
                 </select>
-                <select name="cities" id="citiesList">
+                <select name="cities" id="citiesList" disabled>
                     <option value="" selected disabled hidden>Choose</option>
                     <% for (let i = 0; i < cities.length; i++) { %>
-                        <option value="<%=cities[i]%>"><%= cities[i] %></option>
+                        <option value="<%=cities[i].country%>"><%= cities[i].name %></option>
                     <% } %>
                 </select>
             </div>
@@ -68,10 +68,10 @@
                     <% } %>
                 </select>
                 <label for="children">Children</label>
-                <select name="childrens" id="childrensList">
+                <select name="children" id="childrenList">
                     <option value="" selected disabled hidden>Choose</option>
-                    <% for (let i = 0; i < childrens.length; i++) { %>
-                        <option value="<%=childrens[i]%>"><%= childrens[i] %></option>
+                    <% for (let i = 0; i < children.length; i++) { %>
+                        <option value="<%=children[i]%>"><%= children[i] %></option>
                     <% } %>
                 </select>
             </div>
@@ -87,9 +87,25 @@
             <div>
                 <textarea name="description" cols="30" rows="6" placeholder="Description"></textarea>
             </div>
-            <button class="submit_btn">Registrate</button>
+            <button class="submit_btn">Register</button>
         </form>
     </div>
+    <script>
+        function getCities(country) {
+            document.querySelector('#citiesList').removeAttribute('disabled');
+            let option = document.querySelector('#citiesList').children;
+            for (let i = 0; i < option.length; i++) {
+                option[i].style.display = 'none';
+            }
+            for (let i = 0; i < citiesList.length; i++) {
+                if(citiesList[i].value == country.value) {
+                    option[i].style.display = 'unset';
+                }
+            }
+            option[0].style.display = 'unset';
+            option[0].selected = true;
+        }
+    </script>
 </body>
 
 </html>
