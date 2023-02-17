@@ -34,8 +34,7 @@ module.exports = app => {
             cities: citiesList,
             educations: ['High school', 'Vocational school', 'Some college', 
             "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
-            relationshipStatus: ['Single', 'Divorced', 
-            'Widower', 'Other relationship status'],
+            relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
             children: ['Do not have children', 'Have children'],
             religions: ['Atheism', 'Buddhism', 'Hinduism', 
             'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']

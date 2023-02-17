@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 const { createDb } = require('./config/database');
 const { dbFill } = require('./data/insert_data');
@@ -9,6 +10,7 @@ app.set('views', 'views');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -30,10 +32,12 @@ async function configureDb() {
         User.belongsToMany(Language, { through: UserLanguages });
         Language.belongsToMany(User, { through: UserLanguages });
 
+        // To fill up database
+        await db.sync({ alter: true });
+        await dbFill();
+
+        // Routes
         require('./routes/registrationRoute')(app);
-    
-        // await db.sync({ alter: true });
-        // await dbFill();
     }, 500);
 }
 configureDb();

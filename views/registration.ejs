@@ -5,29 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/registration.css">
     <title>Registration</title>
 </head>
 
 <body>
     <div class="registration_container">
-        <form action="/submit" method="POST">
+        <form action="/submit" method="POST" class="registration_form">
+            <h2>Registration</h2>
             <div>
                 <input type="text" name="username" placeholder="Username">
                 <input type="password" name="password" placeholder="Password">
             </div>
+            <div>            
+                <select name="educations" id="educationsList">
+                    <option value="" selected disabled hidden>Education</option>
+                    <% for (let i = 0; i < educations.length; i++) { %>
+                        <option value="<%=educations[i]%>"><%= educations[i] %></option>
+                    <% } %>
+                </select>               
+                <select name="languages" id="languagesList">
+                    <option value="" selected disabled hidden>Language</option>
+                    <% for (let i = 0; i < languages.length; i++) { %>
+                        <option value="<%=languages[i]%>"><%= languages[i] %></option>
+                    <% } %>
+                </select>
+            </div>
             <div>
-                <input type="text" name="fullName" placeholder="Full name">
+                <input type="text" name="fullName" placeholder="Full Name">
                 <input type="email" name="email" placeholder="Email">
             </div>
             <div>
+                <select name="relationshipStatus" id="relationshipStatusList">
+                    <option value="" selected disabled hidden>Relationship status</option>
+                    <% for (let i = 0; i < relationshipStatus.length; i++) { %>
+                        <option value="<%=relationshipStatus[i]%>"><%= relationshipStatus[i] %></option>
+                    <% } %>
+                </select>
+                <select name="children" id="childrenList">
+                    <option value="" selected disabled hidden>Children</option>
+                    <% for (let i = 0; i < children.length; i++) { %>
+                        <option value="<%=children[i]%>"><%= children[i] %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="gender_container">
                 <input type="checkbox" name="gender1" value="male">
                 <label for="gender1">Male</label>
+
                 <input type="checkbox" name="gender2" value="female">
                 <label for="gender2">Female</label>
             </div>
             <div>
                 <label for="birthDate">Enter your birthday</label><br>
-                <input type="date" name="birthDate">
+                <input type="date" name="birthDate" class="birth_input">
             </div>
             <div>
                 <select name="countries" id="countriesList" onchange="getCities(this)" selected="Choose">
@@ -40,38 +71,6 @@
                     <option value="" selected disabled hidden>Choose</option>
                     <% for (let i = 0; i < cities.length; i++) { %>
                         <option value="<%=cities[i].country%>"><%= cities[i].name %></option>
-                    <% } %>
-                </select>
-            </div>
-            <div>
-                <label for="educations">Educations</label>                
-                <select name="educations" id="educationsList">
-                    <option value="" selected disabled hidden>Choose</option>
-                    <% for (let i = 0; i < educations.length; i++) { %>
-                        <option value="<%=educations[i]%>"><%= educations[i] %></option>
-                    <% } %>
-                </select>
-                <label for="languages">Languages</label>                
-                <select name="languages" id="languagesList">
-                    <option value="" selected disabled hidden>Choose</option>
-                    <% for (let i = 0; i < languages.length; i++) { %>
-                        <option value="<%=languages[i]%>"><%= languages[i] %></option>
-                    <% } %>
-                </select>
-            </div>
-            <div>
-                <label for="relationshipStatus">Relationship status</label>
-                <select name="relationshipStatus" id="relationshipStatusList">
-                    <option value="" selected disabled hidden>Choose</option>
-                    <% for (let i = 0; i < relationshipStatus.length; i++) { %>
-                        <option value="<%=relationshipStatus[i]%>"><%= relationshipStatus[i] %></option>
-                    <% } %>
-                </select>
-                <label for="children">Children</label>
-                <select name="children" id="childrenList">
-                    <option value="" selected disabled hidden>Choose</option>
-                    <% for (let i = 0; i < children.length; i++) { %>
-                        <option value="<%=children[i]%>"><%= children[i] %></option>
                     <% } %>
                 </select>
             </div>
