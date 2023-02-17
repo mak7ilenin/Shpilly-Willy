@@ -19,24 +19,32 @@ module.exports.addCountries = async function addCountries() {
     // Check for cities
     const cities = await City.findAll();
     if(cities.length != 0) {
-        for (let i = 0; i < cities.length; i++) {
-            if(citiesData[i].name != cities[i].name) {
-                City.create({ 
-                    where: {
+        for (let i = 0; i < citiesData.length; i++) {
+            let country = await Country.findOne({
+                where: { code: citiesData[i].code },
+                attributes: ['code']
+            });
+            if(country != null) {
+                await City.findOrCreate({
+                    where: { 
                         name: citiesData[i].name,
-                        code: citiesData[i].code
-                    }
+                        country: country.code
+                    },
                 });
             }
         }
     } else {
         for (let i = 0; i < citiesData.length; i++) {
-            City.create({ 
-                where: {
-                    name: citiesData[i].name,
-                    code: citiesData[i].code
-                }
+            let country = await Country.findOne({
+                where: { code: citiesData[i].code },
+                attributes: ['code']
             });
+            if(country != null) {
+                await City.create({
+                    name: citiesData[i].name,
+                    country: country.code
+                });
+            }
         }
     }
 }
