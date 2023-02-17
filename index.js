@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const { createDb } = require('./config/database');
 const { addCountries } = require('./data/cities');
+const { addLanguages } = require('./data/languages');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -32,8 +33,9 @@ async function configureDb() {
         User.belongsToMany(Language, { through: UserLanguages });
         Language.belongsToMany(User, { through: UserLanguages });
     
-        await db.sync({ alter: true });
-        addCountries();
+        // await db.sync({ alter: true });
+        // addCountries();
+        addLanguages();
     }, 100);
 }
 configureDb();

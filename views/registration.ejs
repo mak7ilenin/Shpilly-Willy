@@ -51,6 +51,13 @@
                         <option value="<%=educations[i]%>"><%= educations[i] %></option>
                     <% } %>
                 </select>
+                <label for="languages">Languages</label>                
+                <select name="languages" id="languagesList">
+                    <option value="" selected disabled hidden>Choose</option>
+                    <% for (let i = 0; i < languages.length; i++) { %>
+                        <option value="<%=languages[i]%>"><%= languages[i] %></option>
+                    <% } %>
+                </select>
             </div>
             <div>
                 <label for="relationshipStatus">Relationship status</label>
