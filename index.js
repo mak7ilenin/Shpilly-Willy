@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { createDb } = require('./config/database');
-const { addCountries } = require('./data/cities');
-const { addLanguages } = require('./data/languages');
+const { dbFill } = require('./data/insert_data');
+const { getDbData } = require('./controllers/registrationController');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -34,8 +34,8 @@ async function configureDb() {
         Language.belongsToMany(User, { through: UserLanguages });
     
         // await db.sync({ alter: true });
-        // addCountries();
-        addLanguages();
-    }, 100);
+        // await dbFill();
+        await getDbData();
+    }, 500);
 }
 configureDb();
