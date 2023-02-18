@@ -61,6 +61,12 @@ module.exports = (app, __dirname) => {
         const { image } = req.files;
         // If no image submitted, exit
         if (!image) return res.sendStatus(400);
+        // Create upload directory if not exists
+        const fs = require('fs');
+        const uploadDir = __dirname + '/public/upload';
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir);
+        }
         // Move the uploaded image to our upload folder
         const imgPath = __dirname + '/public/upload/' + image.name;
         image.mv(imgPath);
