@@ -1,4 +1,4 @@
-module.exports = (app, __dirname, header) => {
+module.exports = (app, __dirname, URheader, LGheader) => {
     const { countries, languages, cities, register } = require('../controllers/registrationController');
     const router = require('express').Router();
     
@@ -26,8 +26,12 @@ module.exports = (app, __dirname, header) => {
         } 
     });
 
-    
     router.get('/', function(req, res) {
+        var header = '';
+        let cookie = req.session;
+        if(cookie.userId != undefined) { header = LGheader } 
+        else { header = URheader }
+
         res.render('registration', {
             header: header,
             languages: languagesList,
@@ -55,7 +59,6 @@ module.exports = (app, __dirname, header) => {
             });
             return;
         }
-        res.render('home');
 
         // Get the file that was set to our field named "image"
         const { image } = req.files;
@@ -67,15 +70,22 @@ module.exports = (app, __dirname, header) => {
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }
-        // Move the uploaded image to our upload folder
-        image.mv(__dirname + '/public/upload/private/' + image.name);
 
-        register(
-            req.body.username, req.body.password, req.body.fullName, req.body.email,
-            req.body.gender, req.body.birthDate, req.body.country, req.body.city,
-            req.body.language, req.body.education, req.body.relationshipStatus,
-            req.body.children, req.body.religion, image.name, req.body.description
-        );
+        try {
+            register(
+                req.body.username, req.body.password, req.body.fullName, req.body.email,
+                req.body.gender, req.body.birthDate, req.body.country, req.body.city,
+                req.body.language, req.body.education, req.body.relationshipStatus,
+                req.body.children, req.body.religion, image.name, req.body.description
+            );
+            // Move the uploaded image to our upload folder
+            image.mv(__dirname + '/public/upload/private/' + image.name);
+            res.redirect('/login');
+        } catch (error) {
+            res.status(500).send({
+                message: 'Something went wrong while registering a new account ...'
+            })
+        }
     });
 
     app.use('/registration', router);

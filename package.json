@@ -18,10 +18,12 @@
   "homepage": "https://github.com/SvinDzjuba/Shpilly-Willy#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
     "mysql2": "^3.1.2",
     "nodemon": "^2.0.20",
     "sequelize": "^6.28.0"
