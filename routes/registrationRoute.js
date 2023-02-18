@@ -55,7 +55,7 @@ module.exports = (app, __dirname) => {
             });
             return;
         }
-        res.send(req.body);
+        res.send('Your account was successfully created!');
 
         // Get the file that was set to our field named "image"
         const { image } = req.files;
