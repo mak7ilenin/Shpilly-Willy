@@ -31,7 +31,7 @@ UserLanguages.init(
     {
         sequelize: db,
         modelName: 'user_languages',
-        timestamps: true,
+        timestamps: false,
         indexes: [
             {
                 unique: true,

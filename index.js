@@ -38,11 +38,12 @@ async function configureDb() {
         Language.belongsToMany(User, { through: UserLanguages });
 
         // To fill up database
-        await db.sync({ alter: true });
-        await dbFill();
+        // await db.sync({ alter: true });
+        // await dbFill();
 
         // Routes
         require('./routes/registrationRoute')(app, __dirname);
+        require('./routes/homeRoute')(app);
     }, 500);
 }
 configureDb();

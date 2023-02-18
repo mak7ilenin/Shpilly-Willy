@@ -68,14 +68,13 @@ module.exports = (app, __dirname) => {
             fs.mkdirSync(uploadDir);
         }
         // Move the uploaded image to our upload folder
-        const imgPath = __dirname + '/public/upload/' + image.name;
-        image.mv(imgPath);
+        image.mv(__dirname + '/public/upload/' + image.name);
 
         register(
             req.body.username, req.body.password, req.body.fullName, req.body.email,
             req.body.gender, req.body.birthDate, req.body.country, req.body.city,
             req.body.language, req.body.education, req.body.relationshipStatus,
-            req.body.children, req.body.religion, imgPath, req.body.description
+            req.body.children, req.body.religion, image.name, req.body.description
         );
     });
 

@@ -1,5 +1,5 @@
 {
-  "name": "shpily-willy",
+  "name": "shpilly-willy",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SvinDzjuba/Shpily-Willy.git"
+    "url": "git+https://github.com/SvinDzjuba/Shpilly-Willy.git"
   },
   "author": "https://github.com/SvinDzjuba",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SvinDzjuba/Shpily-Willy/issues"
+    "url": "https://github.com/SvinDzjuba/Shpilly-Willy/issues"
   },
-  "homepage": "https://github.com/SvinDzjuba/Shpily-Willy#readme",
+  "homepage": "https://github.com/SvinDzjuba/Shpilly-Willy#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",

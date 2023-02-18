@@ -10,7 +10,7 @@ module.exports.createDb = async function createDb() {
     });
     
     // Create database if not exist
-    connection.query('SHOW DATABASES WHERE `database` = "shpily_willy"', 
+    connection.query('SHOW DATABASES WHERE `database` = "shpilly_willy"', 
         function(err, result) {
             if(result.length != 0) {
                 // Database already created
@@ -18,7 +18,7 @@ module.exports.createDb = async function createDb() {
                 createSeqConnection();
             } else {
                 // Database not created yet 
-                connection.query(`CREATE DATABASE shpily_willy`, 
+                connection.query(`CREATE DATABASE shpilly_willy`, 
                     function(err, result) {
                         if(err == null) {
                             createSeqConnection();
@@ -35,7 +35,7 @@ module.exports.createDb = async function createDb() {
 
 // Create sequelize connection
 function createSeqConnection() {
-    const sequelize = new Sequelize('shpily_willy', 'root', '', {
+    const sequelize = new Sequelize('shpilly_willy', 'root', '', {
         host: 'localhost',
         dialect: 'mysql'
     });

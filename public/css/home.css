@@ -1,0 +1,141 @@
+/* Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #1E2640;
+}
+
+.home_page {
+    width: 100%;
+    height: 98vh;
+    display: flex;
+    margin: 0 auto;
+}
+.home_page .left_side, .home_page .right_side {
+    margin-top: 135px;
+}
+/* Left side */
+.home_page .left_side {
+    width: 30%;
+}
+.person_container {
+    width: 460px;
+    height: 210px;
+    background: #FFCC99;
+    border-radius: 5px;
+    display: flex;
+}
+.person_container .photo_container {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    background: #DC9750;
+    box-shadow: 8px 0px 15px -1px #dc9650a8;
+}
+.photo_container img {
+    width: 100%;
+    height: 92%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.person_container .right_container {
+    width: 60%;
+    padding: 10px 0;
+    margin-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.person_container .right_container .info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.info h3, .info h4 {
+    width: 100%;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 20px;
+}
+.info h4 {
+    margin-top: -20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button_container button {
+    width: 184px;
+    height: 34px;
+    border: none;
+    background-color: #DC9750;
+    border-radius: 5px;
+
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Right side */
+.home_page .right_side {
+    width: 70%;
+}
+.right_side .img_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    border-radius: 10px;
+}
+.right_side .text_container {
+    width: 540px;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 56px;
+    align-items: center;
+    text-align: center;
+    color: #FFCC99;
+}
+.right_side .text_container p {
+    margin: 0;
+}
+.main_btn {
+    position: absolute;
+    right: 25px;
+    margin-top: 50px;
+    width: 430px;
+    height: 60px;
+    background: #DC9750;
+    border-radius: 5px;
+    border: none;
+    
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 42px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #F3EAC0;
+    cursor: pointer;
+}
