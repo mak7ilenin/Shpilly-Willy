@@ -51,6 +51,7 @@ async function configureDb() {
         // Routes
         require('./routes/registrationRoute')(app, __dirname, header);
         require('./routes/homeRoute')(app, header);
+        require('./routes/loginRoute')(app, header);
     }, 500);
 }
 configureDb();

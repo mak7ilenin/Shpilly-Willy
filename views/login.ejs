@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <%- header %>
+    <div class="login_page">
+        <div class="left_side">
+            <div class="login_panel">
+                <h2>Login</h2>
+                <form  action="/" method="POST">
+                    <input type="text" placeholder="Username" name="username">
+                    <input type="password" placeholder="Password" name="password">
+                    <button type="submit">LOG IN</button>
+                </form>
+                <div class="separation_div">
+                    <div class="line_div"></div>
+                    <p>OR</p>
+                    <div class="line_div"></div>
+                </div>
+                <div class="signUp_button">
+                    <button><a href="/registration">SIGN UP</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="right_side">
+            <img src="/img/a3b7219c-ab2a-415a-a260-f6541e68af92_rs_768 1.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
