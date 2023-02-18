@@ -12,7 +12,7 @@ body {
     justify-content: center;
 }
 .registration_form {
-    width: 1627px;
+    width: 85%;
     height: 750px;
     background-color: #FFCC99;
     border-radius: 5px;
@@ -20,27 +20,29 @@ body {
     font-style: italic;
     
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 .registration_form h2 {
     width: 100%;
+    margin-bottom: -35px;
     font-weight: 800;
     font-size: 48px;
     text-align: center;
     color: #922C40;
 }
-.registration_form div {
+.left_side, .right_side {
     width: 45%;
-    margin: 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
 }
-.registration_form input, 
-.registration_form select,
-.registration_form textarea {
+.left_side div, .right_side div {
+    width: 95%;
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+input, 
+select,
+textarea {
     width: 45%;
     padding-left: 15px;
     height: 60px;
@@ -48,44 +50,131 @@ body {
     background-color: #DC9750;
     border-radius: 5px;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     color: #000;
+
 }
-.registration_form select, .registration_form .birth_input {
+select {
+    height: 62px;
+}
+select > option {
+    background-color: #ffb870;
+}
+/* Change the auto fill color to any color */
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 45px #DC9750 inset !important;
+}
+select, .birth_input {
     color: #00000080;
     font-weight: 800;
 }
-.registration_form input::placeholder, 
-.registration_form textarea::placeholder {
+.birth_input, #religionsList {
+    width: 100%;
+}
+#religionsList {
+    margin: 1.8px 0;
+}
+.birth_input {
+    height: 70px;
+    margin-top: 5px;
+    padding-right: 10px;
+}
+input::placeholder, 
+textarea::placeholder {
     color: #000;
     opacity: 0.5;
     font-weight: 800;
 }
-.registration_form input[type='checkbox'] {
-    width: 35px;
-    accent-color: #DC9750
-}
-.registration_form label {
+label {
     font-weight: 800;
     font-size: 24px;
     text-align: center;
 }
-.registration_form .gender_container {
-    justify-content: center;
+.gender_container {
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
-.registration_form .gender_container input {
+.left_side div:last-child {
+    margin-bottom: 0;
+    margin-top: 36px;
+}
+.left_side div:last-child select {
+    height: 72px;
+}
+input[type='checkbox'] {
+    width: 35px !important;
+    accent-color: #DC9750;
     margin: 0 20px;
+}
+.gender_container label:nth-child(2) {
+    margin-right: 25px !important;
+}
+.gender_container {
+    margin-left: -15px !important;
+}
+.file_input {
+    width: 45%;
+    height: 180px;
+    cursor: pointer;
+    background-color: #DC9750;
+    border-radius: 5px;
+    border: 0px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    color: #00000081;
+    position: relative;
+}
+input[type='file'] {
+    width: 95%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+textarea {
+    height: 176.5px;
+    resize: none;
+    padding-top: 5px;
+}
+textarea::placeholder {
+    text-align: center;
+    padding: 0;
+    padding-top: 70px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    color: #000;
+}
+.btn_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -75px;
 }
 .submit_btn {
     width: 600px;
     height: 65px;
     background: #DC9750;
     border-radius: 7px;
-    margin: 0 auto;
     border: none;
 
     font-weight: 800;
     font-size: 27px;
     text-align: center;
     color: #000000ab;
+    cursor: pointer;
 }

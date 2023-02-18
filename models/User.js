@@ -60,6 +60,10 @@ User.init(
             'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other'),
             allowNull: false,
         },
+        photo: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false,

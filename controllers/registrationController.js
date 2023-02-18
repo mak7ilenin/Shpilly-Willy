@@ -31,3 +31,63 @@ module.exports.cities = async function() {
     }
     return cities;
 }
+
+// Register user
+module.exports.register = async function(
+    username, password, fullName, email,
+    gender, birthDate, country, city,
+    language, education, relationshipStatus,
+    children, religion, photo, description
+) 
+{
+    const User = require('../models/User');
+    const Language = require('../models/Language');
+    const UserLanguages = require('../models/UserLanguages');
+    await User.findOrCreate({
+        where: {
+            username: username,
+            password: password,
+            fullName: fullName,
+            email: email,
+            gender: gender,
+            birthDate: birthDate,
+            country: country,
+            city: city,
+            education: education,
+            relationshipStatus: relationshipStatus,
+            children: children,
+            religion: religion,
+            photo: photo,
+            description: description !== undefined ? description : ''
+        }
+    });
+    const thisUser = await User.findOne({
+        where: {
+            username: username,
+            password: password,
+            fullName: fullName,
+            email: email,
+            gender: gender,
+            birthDate: birthDate,
+            country: country,
+            city: city,
+            education: education,
+            relationshipStatus: relationshipStatus,
+            children: children,
+            religion: religion,
+            photo: photo,
+            description: description !== undefined ? description : ''
+        },
+        attributes: ['id']
+    })
+    const thisLanguage = await Language.findOne({
+        where: { name: language },
+        attributes: ['id']
+    });
+    await UserLanguages.findOrCreate({
+        where: {
+            userId: thisUser.id,
+            languageId: thisLanguage.id
+        }
+    });
+}

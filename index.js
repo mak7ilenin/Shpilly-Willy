@@ -1,3 +1,5 @@
+const fileUpload = require('express-fileupload');
+const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -8,7 +10,10 @@ const { dbFill } = require('./data/insert_data');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(cors());
+app.use(fileUpload());
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,7 +42,7 @@ async function configureDb() {
         await dbFill();
 
         // Routes
-        require('./routes/registrationRoute')(app);
+        require('./routes/registrationRoute')(app, __dirname);
     }, 500);
 }
 configureDb();

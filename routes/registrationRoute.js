@@ -1,5 +1,5 @@
-module.exports = app => {
-    const { countries, languages, cities } = require('../controllers/registrationController');
+module.exports = (app, __dirname) => {
+    const { countries, languages, cities, register } = require('../controllers/registrationController');
     const router = require('express').Router();
     
     // Get all countries
@@ -40,5 +40,38 @@ module.exports = app => {
             'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
         });
     });
+    router.post('/', function(req, res) {
+        console.log(req.body);
+        if(!req.body.username || !req.body.password
+            || !req.body.fullName || !req.body.email
+            || !req.body.birthDate || !req.body.country
+            || !req.body.city || !req.body.language
+            || !req.body.education || !req.body.relationshipStatus
+            || !req.body.children || !req.body.religion 
+            || !req.body.gender) 
+        {
+            res.status(404).send({
+                message: 'Fill in all required fields!' 
+            });
+            return;
+        }
+        res.send(req.body);
+
+        // Get the file that was set to our field named "image"
+        const { image } = req.files;
+        // If no image submitted, exit
+        if (!image) return res.sendStatus(400);
+        // Move the uploaded image to our upload folder
+        const imgPath = __dirname + '/public/upload/' + image.name;
+        image.mv(imgPath);
+
+        register(
+            req.body.username, req.body.password, req.body.fullName, req.body.email,
+            req.body.gender, req.body.birthDate, req.body.country, req.body.city,
+            req.body.language, req.body.education, req.body.relationshipStatus,
+            req.body.children, req.body.religion, imgPath, req.body.description
+        );
+    });
+
     app.use('/registration', router);
 }
