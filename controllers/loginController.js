@@ -6,5 +6,6 @@ exports.login = async function(username, password, session) {
             password: password
         }
     });
-    if(user != null) { return true };
+    if(user != null) { return user }
+    else { return null };
 }

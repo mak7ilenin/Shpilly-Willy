@@ -1,4 +1,4 @@
-module.exports = (app, __dirname, URheader, LGheader) => {
+module.exports = (app, __dirname, URheader, loggedHeader) => {
     const { countries, languages, cities, register } = require('../controllers/registrationController');
     const router = require('express').Router();
     
@@ -29,22 +29,24 @@ module.exports = (app, __dirname, URheader, LGheader) => {
     router.get('/', function(req, res) {
         var header = '';
         let cookie = req.session;
-        if(cookie.userId != undefined) { header = LGheader } 
-        else { header = URheader }
-
-        res.render('registration', {
-            header: header,
-            languages: languagesList,
-            countries: countriesList,
-            cities: citiesList,
-            educations: ['High school', 'Vocational school', 'Some college', 
-            "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
-            relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
-            children: ['Do not have children', 'Have children'],
-            religions: ['Atheism', 'Buddhism', 'Hinduism', 
-            'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
+        loggedHeader(cookie).then(LGheader => {
+            if(cookie.userId != undefined) { header = LGheader } 
+            else { header = URheader }
+            res.render('registration', {
+                header: header,
+                languages: languagesList,
+                countries: countriesList,
+                cities: citiesList,
+                educations: ['High school', 'Vocational school', 'Some college', 
+                "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
+                relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
+                children: ['Do not have children', 'Have children'],
+                religions: ['Atheism', 'Buddhism', 'Hinduism', 
+                'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
+            });
         });
     });
+
     router.post('/', function(req, res) {
         if(!req.body.username || !req.body.password
             || !req.body.fullName || !req.body.email

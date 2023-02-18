@@ -6,8 +6,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const { createDb } = require('./config/database');
 const { dbFill } = require('./data/insert_data');
+const { createDb } = require('./config/database');
 const { unregisteredHeader, loggedHeader } = require('./controllers/headerController');
 
 app.set('view engine', 'ejs');
@@ -17,8 +17,8 @@ app.use(fileUpload());
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up the session
@@ -38,11 +38,6 @@ app.listen(PORT);
 var URheader = '';
 unregisteredHeader().then(data => {
     URheader = data;
-});
- // Render header for logged user
-var LGheader = '';
-loggedHeader().then(data => {
-    LGheader = data;
 });
 
 async function configureDb() {
@@ -65,9 +60,9 @@ async function configureDb() {
         await dbFill();
 
         // Routes
-        require('./routes/registrationRoute')(app, __dirname, URheader, LGheader);
-        require('./routes/homeRoute')(app, URheader, LGheader);
-        require('./routes/loginRoute')(app, URheader, LGheader);
+        require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
+        require('./routes/homeRoute')(app, URheader, loggedHeader);
+        require('./routes/loginRoute')(app, URheader, loggedHeader);
         require('./routes/logoutRoute')(app);
     }, 500);
 }

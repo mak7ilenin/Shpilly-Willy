@@ -57,6 +57,7 @@ header .empty_div .user {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* margin-right: 25px; */
 }
 .user_btn_container button {
     width: 110px;
@@ -74,4 +75,53 @@ header .empty_div .user {
     font-weight: 800;
     font-size: 22px;
     text-align: center;
+}
+
+/* Logged acc - right side */
+.user_info {
+    width: 60%;
+    height: 75%;
+    background: #FFCC99;
+    margin-right: 40px;
+    border-radius: 5px;
+    display: flex;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 700;
+}
+.user_info .photo_container {
+    width: 40%;
+    height: 100%;
+}
+.user_info .photo_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.user_info .right_side {
+    width: 55%;
+    margin-left: 7px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.user_info .right_side p {
+    margin: 8px 0 0px 3px;
+    height: 10px;
+}
+.user_info .right_side button {
+    width: 100%;
+    margin: 3px;
+    background: #DC9750;
+    border: none;
+    border-radius: 5px;
+}
+.user_info .right_side button a {
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+}
+.user_info .right_side button:last-child {
+    margin-bottom: 7px;
 }

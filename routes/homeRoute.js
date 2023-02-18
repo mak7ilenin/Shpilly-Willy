@@ -1,4 +1,4 @@
-module.exports = (app, URheader, LGheader) => {
+module.exports = (app, URheader, loggedHeader) => {
     const router = require('express').Router();
     const { users } = require('../controllers/homeController');
 
@@ -13,12 +13,15 @@ module.exports = (app, URheader, LGheader) => {
     router.get('/', function(req, res) {
         var header = '';
         let cookie = req.session;
-        if(cookie.userId != undefined) { header = LGheader } 
-        else { header = URheader }
-
-        res.render('home', {
-            header: header,
-            users: usersList
+        loggedHeader(cookie).then(LGheader => {
+            if(cookie.userId != undefined) { header = LGheader } 
+            else { header = URheader }
+    
+            res.render('home', {
+                header: header,
+                users: usersList,
+                authUser: cookie
+            });
         });
     });
 

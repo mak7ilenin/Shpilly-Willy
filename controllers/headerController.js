@@ -21,7 +21,7 @@ exports.unregisteredHeader = async function() {
     return header;
 }
 
-exports.loggedHeader = async function() {
+exports.loggedHeader = async function(authUser) {
     const header = `
     <header>
         <div class="empty_div"></div>
@@ -31,12 +31,17 @@ exports.loggedHeader = async function() {
             <h1>WILLY</h1>    
         </a>
         <div class="empty_div">
-            <div class="user">
-                <div class="user_btn_container">
+            <div class="user_info">
+                <div class="photo_container">
+                    <img src="/upload/private/`+ authUser.photo +`" alt="">
+                </div>
+                <div class="right_side">
+                    <p>`+ authUser.fullName +`</p>
+                    <button><a href="/profile">Manage account</a></button>
                     <button><a href="/logout">Log out</a></button>
                 </div>
             </div>
         </div>
-    </header>`
+    </header>`;
     return header;
 }

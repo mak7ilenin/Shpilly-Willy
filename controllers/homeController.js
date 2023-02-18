@@ -16,5 +16,15 @@ exports.users = async function() {
         user.birthDate = age;
         usersList.push(user);
     }
-    return usersList;
+    // Reshuffle users list
+    const shuffledUsers = [...usersList]
+    const length = shuffledUsers.length;
+
+    for (let start = 0; start < length; start++) {
+        const randomPosition = Math.floor((shuffledUsers.length - start) * Math.random())
+        const randomItem = shuffledUsers.splice(randomPosition, 1)
+
+        shuffledUsers.push(...randomItem)
+    }
+    return shuffledUsers;
 }
