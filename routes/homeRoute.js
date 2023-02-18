@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports = (app, header) => {
     const router = require('express').Router();
     const { users } = require('../controllers/homeController');
 
@@ -12,6 +12,7 @@ module.exports = app => {
 
     router.get('/', function(req, res) {
         res.render('home', {
+            header: header,
             users: usersList
         });
     });

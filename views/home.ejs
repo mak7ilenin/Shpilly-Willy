@@ -7,14 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/header.css">
     <title>Shpilly Willy</title>
 </head>
 
 <body>
+    <%- header %>
     <div class="home_page">
-        <div class="left_side">
+        <ul class="left_side">
             <% for (let i = 0; i < users.length; i++) { %>
-                <div class="person_container">
+                <li class="person_container">
                     <div class="photo_container">
                         <img src="/upload/<%= users[i].photo %>" alt="">
                     </div>
@@ -27,9 +29,9 @@
                             <button>Start chatting</button>
                         </div>
                     </div>
-                </div>
+                </li>
             <% } %>
-        </div>
+        </ul>
         <div class="right_side">
             <div class="img_container">
                 <img src="/img/pexels-asad-photo-maldives-1024960 1.jpg" alt="">

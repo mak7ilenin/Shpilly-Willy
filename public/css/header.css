@@ -1,0 +1,77 @@
+/* Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    background-color: #1E2640;
+}
+header {
+    width: 100%;
+    height: 155px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #922C40;
+    display: flex;
+}
+header .empty_div {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+header .logo {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+}
+header .logo h1 {
+    width: 100%;
+    margin: 0;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 56px;
+    text-align: center;
+    color: #FFCC99;
+}
+header .logo .logo_line {
+    width: 100%;
+    height: 18px;
+    background: #DC9750;
+    border-radius: 10px;
+}
+header .empty_div .user {
+    height: 100%;
+    height: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+    justify-content: center;
+}
+.user_btn_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user_btn_container button {
+    width: 110px;
+    height: 38px;
+    background: #DC9750;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.user_btn_container button > a {
+    text-decoration: none;
+    color: #F3EAC0;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 22px;
+    text-align: center;
+}

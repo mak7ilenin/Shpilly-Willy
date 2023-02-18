@@ -1,4 +1,4 @@
-module.exports = (app, __dirname) => {
+module.exports = (app, __dirname, header) => {
     const { countries, languages, cities, register } = require('../controllers/registrationController');
     const router = require('express').Router();
     
@@ -29,6 +29,7 @@ module.exports = (app, __dirname) => {
     
     router.get('/', function(req, res) {
         res.render('registration', {
+            header: header,
             languages: languagesList,
             countries: countriesList,
             cities: citiesList,

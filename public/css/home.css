@@ -1,22 +1,18 @@
-/* Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
-
-body {
-    background-color: #1E2640;
-}
-
 .home_page {
     width: 100%;
-    height: 98vh;
+    height: 82.5vh;
     display: flex;
     margin: 0 auto;
 }
-.home_page .left_side, .home_page .right_side {
-    margin-top: 135px;
-}
+
 /* Left side */
 .home_page .left_side {
     width: 30%;
+    margin-top: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-evenly;
+    justify-content: center
 }
 .person_container {
     width: 460px;
@@ -83,11 +79,14 @@ body {
     font-weight: 800;
     font-size: 18px;
     text-align: center;
+    cursor: pointer
+    ;
 }
 
 /* Right side */
 .home_page .right_side {
     width: 70%;
+    margin-top: 15px;
 }
 .right_side .img_container {
     width: 100%;

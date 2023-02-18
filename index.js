@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 const { createDb } = require('./config/database');
 const { dbFill } = require('./data/insert_data');
+const { renderHeader } = require('./controllers/headerController');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -20,6 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Serving is running on port ${PORT}`);
+});
+
+ // Render header
+var header = '';
+renderHeader().then(data => {
+    header = data;
 });
 
 async function configureDb() {
@@ -42,8 +49,8 @@ async function configureDb() {
         // await dbFill();
 
         // Routes
-        require('./routes/registrationRoute')(app, __dirname);
-        require('./routes/homeRoute')(app);
+        require('./routes/registrationRoute')(app, __dirname, header);
+        require('./routes/homeRoute')(app, header);
     }, 500);
 }
 configureDb();
