@@ -41,7 +41,8 @@ module.exports.dbFill = async function dbFill() {
         });
     }
 
-    // Add test user into database
+    // Add test users into database
+    // User 1
     await User.findOrCreate({
         where: {
             username: 'dzalex72',
@@ -59,7 +60,7 @@ module.exports.dbFill = async function dbFill() {
             photo: 'me.jpg'
         }
     })
-    const testUser = await User.findOne({
+    const testUser1 = await User.findOne({
         where: {
             username: 'dzalex72',
             password: 'admin',
@@ -83,8 +84,102 @@ module.exports.dbFill = async function dbFill() {
     });
     await UserLanguage.findOrCreate({
         where: {
-            userId: testUser.id,
+            userId: testUser1.id,
             languageId: rus.id
+        }
+    })
+
+    // User 2
+    await User.findOrCreate({
+        where: {
+            username: 'mtalhead',
+            password: 'daniel228',
+            email: 'mtalhead24@gmail.com',
+            fullName: 'Daniel Monjane',
+            gender: 'male',
+            birthDate: '2004-01-24',
+            country: 'EST',
+            city: 'Tartu',
+            education: "Bachelor's / master's",
+            relationshipStatus: 'Single',
+            children: 'Do not have children',
+            religion: 'Atheism',
+            photo: 'daniel.jpg'
+        }
+    })
+    const testUser2 = await User.findOne({
+        where: {
+            username: 'mtalhead',
+            password: 'daniel228',
+            email: 'mtalhead24@gmail.com',
+            fullName: 'Daniel Monjane',
+            gender: 'male',
+            birthDate: '2004-01-24',
+            country: 'EST',
+            city: 'Tartu',
+            education: "Bachelor's / master's",
+            relationshipStatus: 'Single',
+            children: 'Do not have children',
+            religion: 'Atheism',
+            photo: 'daniel.jpg'
+        },
+        attributes: ['id']
+    });
+    const eng = await Language.findOne({
+        where: { name: 'English' },
+        attributes: ['id']
+    });
+    await UserLanguage.findOrCreate({
+        where: {
+            userId: testUser2.id,
+            languageId: eng.id
+        }
+    })
+
+    // User 3
+    await User.findOrCreate({
+        where: {
+            username: 'kalamain228',
+            password: 'fizzmain007',
+            email: 'timothy@gmail.com',
+            fullName: 'Timothy Main',
+            gender: 'male',
+            birthDate: '2004-10-22',
+            country: 'EST',
+            city: 'Tallinn',
+            education: 'Some college',
+            relationshipStatus: 'Other relationship status',
+            children: 'Do not have children',
+            religion: 'Islam',
+            photo: 'timothy.png'
+        }
+    })
+    const testUser3 = await User.findOne({
+        where: {
+            username: 'kalamain228',
+            password: 'fizzmain007',
+            email: 'timothy@gmail.com',
+            fullName: 'Timothy Main',
+            gender: 'male',
+            birthDate: '2004-10-22',
+            country: 'EST',
+            city: 'Tallinn',
+            education: 'Some college',
+            relationshipStatus: 'Other relationship status',
+            children: 'Do not have children',
+            religion: 'Islam',
+            photo: 'timothy.png'
+        },
+        attributes: ['id']
+    });
+    const est = await Language.findOne({
+        where: { name: 'Estonian' },
+        attributes: ['id']
+    });
+    await UserLanguage.findOrCreate({
+        where: {
+            userId: testUser3.id,
+            languageId: est.id
         }
     })
 }

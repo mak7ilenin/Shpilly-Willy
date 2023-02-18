@@ -42,7 +42,6 @@ module.exports = (app, __dirname, header) => {
         });
     });
     router.post('/', function(req, res) {
-        console.log(req.body);
         if(!req.body.username || !req.body.password
             || !req.body.fullName || !req.body.email
             || !req.body.birthDate || !req.body.country
@@ -56,7 +55,7 @@ module.exports = (app, __dirname, header) => {
             });
             return;
         }
-        res.send('Your account was successfully created!');
+        res.render('home');
 
         // Get the file that was set to our field named "image"
         const { image } = req.files;
@@ -64,12 +63,12 @@ module.exports = (app, __dirname, header) => {
         if (!image) return res.sendStatus(400);
         // Create upload directory if not exists
         const fs = require('fs');
-        const uploadDir = __dirname + '/public/upload';
+        const uploadDir = __dirname + '/public/upload/private';
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }
         // Move the uploaded image to our upload folder
-        image.mv(__dirname + '/public/upload/' + image.name);
+        image.mv(__dirname + '/public/upload/private/' + image.name);
 
         register(
             req.body.username, req.body.password, req.body.fullName, req.body.email,
