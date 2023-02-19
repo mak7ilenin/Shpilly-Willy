@@ -27,7 +27,7 @@ User.init(
             allowNull: false,
         },
         gender: {
-            type: DataTypes.ENUM('male', 'female'),
+            type: DataTypes.ENUM('Male', 'Female'),
             allowNull: false,
         },
         birthDate: {

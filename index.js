@@ -62,7 +62,7 @@ async function configureDb() {
         // Routes
         require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
         require('./routes/homeRoute')(app, URheader, loggedHeader);
-        require('./routes/chatsRouter')(app, URheader, loggedHeader);
+        require('./routes/chatsRouter')(app, loggedHeader);
         require('./routes/loginRoute')(app, URheader, loggedHeader);
         require('./routes/logoutRoute')(app);
     }, 500);

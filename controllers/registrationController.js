@@ -79,15 +79,17 @@ module.exports.register = async function(
             description: description !== undefined ? description : ''
         },
         attributes: ['id']
-    })
-    const thisLanguage = await Language.findOne({
-        where: { name: language },
-        attributes: ['id']
     });
-    await UserLanguages.findOrCreate({
-        where: {
-            userId: thisUser.id,
-            languageId: thisLanguage.id
-        }
-    });
+    for (let i = 0; i < language.length; i++) {
+        let thisLanguage = await Language.findOne({
+            where: { name: language[i] },
+            attributes: ['id']
+        });
+        await UserLanguages.findOrCreate({
+            where: {
+                userId: thisUser.id,
+                languageId: thisLanguage.id
+            }
+        });
+    }
 }

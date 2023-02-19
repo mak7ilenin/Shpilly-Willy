@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/registration.css">
     <link rel="stylesheet" href="/css/header.css">
     <title>Registration</title>
@@ -51,9 +53,11 @@
                 </div>
             </div>
             <div class="right_side">
-                <div>            
-                    <select name="language" id="languagesList">
-                        <option value="" selected disabled hidden>Language</option>
+                <div>       
+                    <select name="language" id="languagesList" 
+                        multiple class="chosen-select" data-placeholder="Languages"
+                    >
+                        <!-- <option value="" selected disabled>Language</option> -->
                         <% for (let i = 0; i < languages.length; i++) { %>
                             <option value="<%=languages[i]%>"><%= languages[i] %></option>
                         <% } %>
@@ -118,7 +122,13 @@
             }
             option[0].style.display = 'unset';
             option[0].selected = true;
+            
         }
+        $(document).ready(() => {
+            $(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
+        })
+
+
     </script>
 </body>
 

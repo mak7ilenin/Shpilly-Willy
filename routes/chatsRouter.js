@@ -1,4 +1,4 @@
-module.exports = (app, URheader, loggedHeader) => {
+module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
     const { users } = require('../controllers/chatsController');
 
@@ -15,11 +15,11 @@ module.exports = (app, URheader, loggedHeader) => {
                     for (let i = 0; i < data.length; i++) {
                         usersList.push(data[i]);
                     }
-                })
-                res.render('chats', {
-                    header: header,
-                    users: usersList,
-                    authUser: req.session
+                    res.render('chats', {
+                        header: header,
+                        users: usersList,
+                        authUser: req.session
+                    });
                 });
             });
         }

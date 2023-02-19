@@ -5,7 +5,6 @@ exports.users = async function() {
     for (let i = 0; i < users.length; i++) {
         let user = users[i].dataValues;
 
-        // Get today's date 
         let nm_date = (user.birthDate).replace('-', '/').replace('-', '/');
         let date = new Date(nm_date);
         let month_diff = Date.now() - new Date(date);

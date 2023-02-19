@@ -46,9 +46,9 @@ textarea {
     font-weight: 600;
     font-size: 20px;
     color: #000;
-
 }
 select {
+    width: 47.4%;
     height: 62px;
 }
 select > option {
@@ -89,6 +89,65 @@ label {
     font-size: 24px;
     text-align: center;
 }
+.chosen-choices span {
+    background-color: #DC9750 !important;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background-color: #FFCC99 !important;
+}
+.chosen-results {
+    -webkit-overflow-scrolling: touch !important;
+}
+.chosen-container-multi, .chosen-choices {
+    height: 62px !important;
+    background-color: #DC9750 !important;
+    border-radius: 5px;
+    background-image: none !important;
+    border: none !important;
+    margin: 0 !important;
+}
+.chosen-container-multi .chosen-choices li.search-choice {
+    background-image: none !important;
+    background-color: #FFCC99 !important;
+    background-clip: unset !important;
+    box-shadow: none !important;
+    -web-kit-box-shadow: none !important;
+    padding: 4px 20px 4px 5px;
+}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    top: 5.5px;
+}
+.chosen-container-active .chosen-choices li.search-field input[type=text] {
+    font-weight: 600;
+    font-size: 18px;
+    color: #000 !important;
+}
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+    color: #000 !important;
+    height: 100%;
+    font-family: 'Inter';
+    color: #000;
+    opacity: 0.5;
+    font-size: 22px;
+    font-weight: 800;
+    padding-left: 10px;
+}
+.search-field {
+    height: 100%;
+}
+.chosen-container {
+    width: 45%;
+    height: 60px;
+    border: none;
+    background-color: #DC9750 !important;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000;
+}
+.chosen-container .chosen-drop {
+    background: #ffb870
+}
 .gender_container {
     width: 100% !important;
     align-items: center !important;
@@ -113,7 +172,7 @@ input[type='checkbox'] {
     margin-left: -15px !important;
 }
 .file_input {
-    width: 45%;
+    width: 47.4%;
     height: 180px;
     cursor: pointer;
     background-color: #DC9750;
@@ -138,9 +197,11 @@ input[type='file'] {
     opacity: 0;
 }
 textarea {
-    height: 176.5px;
+    width: 47.1%;
+    height: 173px;
     resize: none;
     padding-top: 5px;
+    padding-left: 0;
 }
 textarea::placeholder {
     text-align: center;
