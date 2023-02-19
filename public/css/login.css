@@ -110,6 +110,9 @@ input:-webkit-autofill:active {
     border: none;
 }
 .login_panel .signUp_button button a {
+    display: block;
+    width: 100%;
+    padding: 10px 2px;
     font-style: italic;
     font-weight: 900;
     color: #000000ab;

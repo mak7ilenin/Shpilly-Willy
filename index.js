@@ -56,12 +56,13 @@ async function configureDb() {
         Language.belongsToMany(User, { through: UserLanguages });
 
         // To fill up database
-        await db.sync({ alter: true });
-        await dbFill();
+        // await db.sync({ alter: true });
+        // await dbFill();
 
         // Routes
         require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
         require('./routes/homeRoute')(app, URheader, loggedHeader);
+        require('./routes/chatsRouter')(app, URheader, loggedHeader);
         require('./routes/loginRoute')(app, URheader, loggedHeader);
         require('./routes/logoutRoute')(app);
     }, 500);

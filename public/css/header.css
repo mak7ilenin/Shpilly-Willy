@@ -20,6 +20,30 @@ header .empty_div {
     justify-content: flex-end;
     align-items: center;
 }
+header .empty_div:first-child {
+    justify-content: flex-start;
+}
+.empty_div .chats_btn {
+    width: 50%;
+    height: 60px;
+    margin-left: 15px;
+    background: #DC9750;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.empty_div .chats_btn a {
+    display: block;
+    width: 100%;
+    padding: 8px 2px;
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 800;
+    font-size: 28px;
+    text-align: center;
+    color: #000000;
+}
 header .logo {
     width: 50%;
     display: flex;
@@ -68,6 +92,8 @@ header .empty_div .user {
     cursor: pointer;
 }
 .user_btn_container button > a {
+    display: block;
+    width: 100%;
     text-decoration: none;
     color: #F3EAC0;
     font-family: 'Inter';
@@ -116,6 +142,9 @@ header .empty_div .user {
     border-radius: 5px;
 }
 .user_info .right_side button a {
+    display: block;
+    width: 100%;
+    padding: 2px 2px;
     text-decoration: none;
     font-weight: 800;
     font-size: 14px;

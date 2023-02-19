@@ -24,7 +24,9 @@ exports.unregisteredHeader = async function() {
 exports.loggedHeader = async function(authUser) {
     const header = `
     <header>
-        <div class="empty_div"></div>
+        <div class="empty_div">
+            <button class="chats_btn"><a href="/chats">Chats</a></button>
+        </div>
         <a href="/" class="logo">
             <h1>SHPILLY</h1>
             <div class="logo_line"></div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="/css/chats.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <title>Online Chats</title>
+</head>
+
+<body>
+    <div class="chats_page">
+        <div class="filter_panel">
+            <form action="/chats/search">
+                <label for="age">Age</label><br>
+                <input type="number" name="age" min="14" max="100" placeholder="Age">
+    
+                <label for="lookingFor">Looking for</label>
+                <input type="text" name="lookingFor" placeholder="Looking for">
+    
+                <label for="country">Country</label>
+                <input type="text" name="country" placeholder="Country">
+     
+                <label for="city">City</label>
+                <input type="text" name="city" placeholder="City">
+
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="people_container">
+            <ul class="people_list">
+                <% for (let i = 0; i < users.length; i++) { %>
+                    <li class="person_container" data-value="<%= users[i].id %>">
+                        <div class="photo_container">
+                            <img src="/upload/private/<%= users[i].photo %>" alt="">
+                        </div>
+                        <div class="person_info">
+                            <div class="top">
+                                <h2><%= users[i].fullName %></h2>
+                                <p><%= users[i].country %>, <%= users[i].city %></p>
+                                <p><%= users[i].gender %></p>
+                            </div>
+                            <div class="bottom">
+                                <div class="rating">
+                                    <img src="/img/heart 1.png" alt="like">
+                                    <img src="/img/heart 2.png" alt="dislike">
+                                </div>
+                                <div class="buttons"> 
+                                    <button>Start chatting</button>
+                                    <button>Check profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
