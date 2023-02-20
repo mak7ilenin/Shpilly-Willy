@@ -15,7 +15,7 @@
     <%- header %>
     <div class="chats_page">
         <div class="filter_panel">
-            <form action="/chats/search">
+            <form action="/chats" method="POST">
                 <div>
                     <label for="age">Age</label>
                     <input type="number" name="age" min="14" max="100" placeholder="Age">
@@ -35,7 +35,8 @@
                     <label for="city">City</label>
                     <input type="text" name="city" placeholder="City">
                 </div>
-                <input type="submit" value="Search">
+                <input type="submit" value="Search" id="submitFilter">
+                <p id="message"><%- message %></p>
             </form>
         </div>
         <div class="people_container">
@@ -67,6 +68,15 @@
             </ul>
         </div>
     </div>
+    <script>
+        $('#submitFilter').submit(function() {
+            const btn = $(this);
+            btn.prop('disabled', true);
+            setTimeout(() => {
+                btn.prop('disabled', false);
+            }, 1000);
+        });
+    </script>
 </body>
 
 </html>

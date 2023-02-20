@@ -61,6 +61,13 @@
     color: #00000082;
     font-style: italic;
 }
+#message {
+    color: #922C40;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24px;
+}
 
 /* People list */
 .people_container {
