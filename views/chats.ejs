@@ -69,7 +69,8 @@
         </div>
     </div>
     <script>
-        $('#submitFilter').submit(function() {
+        $('#submitFilter').submit(function(e) {
+            e.preventDefault();
             const btn = $(this);
             btn.prop('disabled', true);
             setTimeout(() => {
