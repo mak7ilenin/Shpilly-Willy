@@ -42,7 +42,7 @@
         <div class="people_container">
             <ul class="people_list">
                 <% for (let i = 0; i < users.length; i++) { %>
-                    <li class="person_container" data-value="<%= users[i].id %>">
+                    <li class="person_container">
                         <div class="photo_container">
                             <img src="/upload/private/<%= users[i].photo %>" alt="">
                         </div>
@@ -58,8 +58,8 @@
                                     <img src="/img/heart 2.png" alt="dislike">
                                 </div>
                                 <div class="buttons"> 
-                                    <button>Start chatting</button>
-                                    <button>Check profile</button>
+                                    <button><a href="/chat/<%= users[i].id %>">Start chatting</a></button>
+                                    <button><a href="/user/<%= users[i].id %>">Check profile</a></button>
                                 </div>
                             </div>
                         </div>

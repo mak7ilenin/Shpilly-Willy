@@ -15,7 +15,7 @@ module.exports = (app, URheader, loggedHeader) => {
         let cookie = req.session;
         loggedHeader(cookie).then(LGheader => {
             if(cookie.userId != undefined) { header = LGheader } 
-            else { header = URheader }
+            else { header = URheader; cookie = undefined }
     
             res.render('home', {
                 header: header,

@@ -67,20 +67,19 @@
     justify-content: center;
     align-items: center;
 }
-.button_container button {
+.button_container a {
     width: 184px;
-    height: 34px;
-    border: none;
+    padding: 8px;
+    color: #000;
+    text-decoration: none;
     background-color: #DC9750;
     border-radius: 5px;
-
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
     font-size: 18px;
     text-align: center;
-    cursor: pointer
-    ;
+    cursor: pointer;
 }
 
 /* Right side */
@@ -125,7 +124,8 @@
     right: 5px;
     margin-top: 50px;
     width: 430px;
-    height: 60px;
+    /* height: 60px; */
+    padding: 8px 5px;
     background: #DC9750;
     border-radius: 5px;
     border: none;
@@ -138,4 +138,5 @@
     text-align: center;
     color: #F3EAC0;
     cursor: pointer;
+    text-decoration: none;
 }

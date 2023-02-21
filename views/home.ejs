@@ -16,7 +16,7 @@
     <div class="home_page">
         <ul class="left_side">
             <% for (let i = 0; i < 3; i++) { %>
-                <li class="person_container">
+                <li class="person_container" data-id="<%= users[i].id %>">
                     <div class="photo_container">
                         <img src="/upload/private/<%= users[i].photo %>" alt="">
                         <!-- <img src="/upload/private/<%= users[i].photo %>" alt=""> -->
@@ -27,7 +27,11 @@
                             <h4><%= users[i].city %></h4>
                         </div>
                         <div class="button_container">
-                            <button>Start chatting</button>
+                            <% if(authUser == undefined) { %>
+                                <a href="/login">Start chatting</a>
+                            <% } else { %>
+                                <a href="/chat/<%= users[i].id %>">Start chatting</a>
+                            <% } %>
                         </div>
                     </div>
                 </li>
@@ -38,7 +42,7 @@
                 <img src="/img/pexels-asad-photo-maldives-1024960 1.jpg" alt="">
                 <div class="text_container">
                     <p>FIND YOUR SECOND HALF TODAY! JUST START BROWSING SHPILLY WILLY!</p>
-                    <button class="main_btn">Start browsing</button>
+                    <a class="main_btn" href="/login">Start browsing</a>
                 </div>
             </div>
         </div>

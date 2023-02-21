@@ -63,8 +63,11 @@ async function configureDb() {
         require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
         require('./routes/homeRoute')(app, URheader, loggedHeader);
         require('./routes/chatsRouter')(app, loggedHeader);
+        require('./routes/profileRoute')(app, loggedHeader);
+        require('./routes/editProfileRoute')(app, loggedHeader);
+        require('./routes/userProfileRouter')(app, loggedHeader);
         require('./routes/loginRoute')(app, URheader, loggedHeader);
-        require('./routes/logoutRoute')(app);
+        require('./routes/logoutRoute')(app, URheader);
     }, 500);
 }
 configureDb();

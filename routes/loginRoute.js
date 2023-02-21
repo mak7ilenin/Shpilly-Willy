@@ -15,6 +15,7 @@ module.exports = (app, URheader, loggedHeader) => {
         login(req.body.username, req.body.password).then(user => {
             if(user != null) {
                 session = req.session;
+                session.profileId = user.id;
                 session.userId = req.body.username;
                 session.fullName = user.fullName;
                 session.photo = user.photo;

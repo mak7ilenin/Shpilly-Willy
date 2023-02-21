@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <title>User profile</title>
+</head>
+
+<body>
+    <%- header %>
+    <div class="user_page">
+        <div class="photo_container">
+            <img src="/upload/private/<%= user.photo %>" alt="">
+        </div>
+        <div class="right_info">
+            <h2><%= user.fullName %></h2>
+            <div class="user_info">
+                <div class="input_label">
+                    <label for="age">Age (Birth date)</label>
+                    <input type="text" name="age" value="<%= user.age %> years (<%= user.birthDate %>)" readonly>
+                </div>
+                <div>
+                    <div class="input_label half_width">
+                        <label for="country">Country</label>
+                        <input type="text" value="<%= user.country %>" readonly>
+                    </div>
+    
+                    <div class="input_label half_width">
+                        <label for="city">City</label>
+                        <input type="text" value="<%= user.city %>" readonly>
+                    </div>
+                </div>
+                <div class="input_label languages_div">
+                    <label for="language">Languages</label>
+                    <select name="language" id="languagesList" multiple class="chosen-select" data-placeholder="Languages">
+                        <% for (let i = 0; i < userLanguages.length; i++) { %>
+                            <option value="<%= userLanguages[i].name %>" selected disabled><%= userLanguages[i].name %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <div class="input_label half_width">
+                        <label for="gender">Gender</label>
+                        <input type="text" value="<%= user.gender %>" readonly>
+                    </div>
+                    <div class="input_label half_width">
+                        <label for="education">Education</label>
+                        <input type="text" value="<%= user.education %>" readonly> 
+                    </div>
+                </div>
+                <div>
+                    <div class="input_label half_width">
+                        <label for="relationshipStatus">Relationship Status</label>
+                        <input type="text" value="<%= user.relationshipStatus %>" readonly>
+                    </div>
+                    <div class="input_label half_width">
+                        <label for="children">Children</label>
+                        <input type="text" value="<%= user.children %>" readonly>
+                    </div>
+                </div>
+                <div class="input_label">
+                    <label for="religion">Religion</label>
+                    <input type="text" value="<%= user.religion %>" readonly>
+                </div>
+            </div>
+            <div class="description">
+                <textarea name="description" placeholder="Description" readonly></textarea>
+            </div>
+            <div class="bottom_container">
+                <div class="rating">
+                    <img src="/img/heart 1.png" alt="">
+                    <img src="/img/heart 2.png" alt="">
+                </div>
+                <div class="button_container">
+                    <a href="/chat/<%= user.id %>">Start chatting</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(() => {
+            $('.chosen-select').chosen();
+            $('.chosen-container').parent().find('.chosen-container').css({'pointer-events': 'none','opacity': 1});
+        })
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
-    const User = require('../models/User');
     const { users, filter } = require('../controllers/chatsController');
 
     
