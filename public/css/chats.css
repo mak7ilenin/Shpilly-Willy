@@ -61,6 +61,13 @@
     color: #00000082;
     font-style: italic;
 }
+/* Change the auto fill color to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 45px #DC9750 inset !important;
+}
 #message {
     color: #922C40;
     font-family: 'Inter';
