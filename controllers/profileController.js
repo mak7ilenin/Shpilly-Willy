@@ -4,6 +4,15 @@ exports.profile = async function(me) {
     let user = await User.findOne({ where: { id: me.profileId }});
     let country = await Country.findOne({ where: { code: user.country }})
     user.country = country.name;
+
+    let nm_date = (user.birthDate).replace('-', '/').replace('-', '/');
+    let date = new Date(nm_date);
+    let month_diff = Date.now() - new Date(date);
+    let age_dt = new Date(month_diff); 
+    let year = age_dt.getUTCFullYear();
+    let age = Math.abs(year - 1970);
+    user.age = age;
+    
     return user;
 }
 exports.myLanguages = async function(me) {

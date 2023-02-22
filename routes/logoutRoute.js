@@ -13,13 +13,13 @@ module.exports = (app, URheader) => {
     router.get('/', function (req, res) {
         if(req.session.userId != undefined) {
             req.session.destroy();
+            
+            res.render('home', {
+                header: URheader,
+                users: usersList,
+                authUser: undefined
+            });
         }
-        res.render('home', {
-            header: URheader,
-            users: usersList,
-            authUser: undefined
-        });
-        // res.redirect('/');
     });
     app.use('/logout', router);
 }

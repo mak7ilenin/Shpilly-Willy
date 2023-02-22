@@ -2,7 +2,9 @@ const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const { Op } = require('sequelize');
 const express = require('express');
+const cron = require('node-cron');
 const cors = require('cors');
 const path = require('path');
 const app = express();
@@ -56,18 +58,39 @@ async function configureDb() {
         Language.belongsToMany(User, { through: UserLanguages });
 
         // To fill up database
-        // await db.sync({ alter: true });
-        // await dbFill();
+        await db.sync({ alter: true });
+        await dbFill();
 
         // Routes
         require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
         require('./routes/homeRoute')(app, URheader, loggedHeader);
-        require('./routes/chatsRouter')(app, loggedHeader);
+        require('./routes/chatsRoute')(app, loggedHeader);
         require('./routes/profileRoute')(app, loggedHeader);
+        require('./routes/deleteProfileRoute')(app, loggedHeader);
         require('./routes/editProfileRoute')(app, loggedHeader);
-        require('./routes/userProfileRouter')(app, loggedHeader);
+        require('./routes/userProfileRoute')(app, loggedHeader);
         require('./routes/loginRoute')(app, URheader, loggedHeader);
         require('./routes/logoutRoute')(app, URheader);
+
+
+        // cron.schedule("*/4 * * * * *", async function() {
+        //     await User.destroy({
+        //         where: {
+        //             deletedAt: {[Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000))}
+        //         },
+        //         force: true
+        //     });
+        // });
+        // Check users deletedAt
+        cron.schedule("0 0 0 * * *", async function() {
+            await User.destroy({
+                where: {
+                    deletedAt: {[Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000))}
+                },
+                force: true
+            });
+        });
+
     }, 500);
 }
 configureDb();

@@ -131,6 +131,7 @@
     font-size: 27px;
     text-align: center;
     color: #000000;
+    text-transform: uppercase;
 }
 
 .input_label {

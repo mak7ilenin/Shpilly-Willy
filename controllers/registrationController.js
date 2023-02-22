@@ -83,7 +83,6 @@ module.exports.register = async function(
     for (let i = 0; i < language.length; i++) {
         let thisLanguage = await Language.findOne({
             where: { name: language[i] },
-            attributes: ['id']
         });
         await UserLanguages.findOrCreate({
             where: {

@@ -42,7 +42,11 @@
                 <img src="/img/pexels-asad-photo-maldives-1024960 1.jpg" alt="">
                 <div class="text_container">
                     <p>FIND YOUR SECOND HALF TODAY! JUST START BROWSING SHPILLY WILLY!</p>
-                    <a class="main_btn" href="/login">Start browsing</a>
+                    <% if(authUser == undefined) { %>
+                        <a class="main_btn" href="/login">Start browsing</a>
+                        <% } else { %>
+                            <a class="main_btn" href="/chats">Start browsing</a>
+                    <% } %>
                 </div>
             </div>
         </div>
