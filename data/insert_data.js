@@ -59,7 +59,7 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Atheism',
             photo: 'me.jpg'
         }
-    })
+    });
     const testUser1 = await User.findOne({
         where: {
             username: 'dzalex72',
@@ -87,7 +87,7 @@ module.exports.dbFill = async function dbFill() {
             userId: testUser1.id,
             languageId: rus.id
         }
-    })
+    });
 
     // User 2
     await User.findOrCreate({
@@ -106,7 +106,7 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Atheism',
             photo: 'daniel.jpg'
         }
-    })
+    });
     const testUser2 = await User.findOne({
         where: {
             username: 'mtalhead',
@@ -134,7 +134,7 @@ module.exports.dbFill = async function dbFill() {
             userId: testUser2.id,
             languageId: eng.id
         }
-    })
+    });
 
     // User 3
     await User.findOrCreate({
@@ -153,7 +153,7 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Islam',
             photo: 'timothy.png'
         }
-    })
+    });
     const testUser3 = await User.findOne({
         where: {
             username: 'kalamain228',
@@ -181,5 +181,8 @@ module.exports.dbFill = async function dbFill() {
             userId: testUser3.id,
             languageId: est.id
         }
-    })
+    });
+
+    const PORT = process.env.PORT || 3000;
+    console.log(`-- Everything is fine! You can use the app on [PORT: ${PORT}] --`);
 }

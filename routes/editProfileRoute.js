@@ -32,7 +32,6 @@ module.exports = (app, loggedHeader) => {
             res.redirect('/');
             return;
         } else {
-            console.log('bbbbbbbbbbbbbb');
             profile(req.session).then(user => {
                 myLanguages(req.session).then(languages => {
                     loggedHeader(req.session).then(header => {

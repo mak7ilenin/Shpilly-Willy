@@ -12,6 +12,11 @@ module.exports.createDb = async function createDb() {
     // Create database if not exist
     connection.query('SHOW DATABASES WHERE `database` = "shpilly_willy"', 
         function(err, result) {
+            if(result == undefined) {
+                console.log('Turn on the xampp, please!');
+                module.exports.db = 'NO_XAMPP';
+                return;
+            }
             if(result.length != 0) {
                 // Database already created
                 console.log('The database has already been created!');
@@ -27,10 +32,9 @@ module.exports.createDb = async function createDb() {
                         }
                     });
             }
+            // Close the connection
+            setTimeout(() => { connection.end() }, 2000);
         });
-
-    // Close the connection
-    setTimeout(() => { connection.end() }, 2000);
 }
 
 // Create sequelize connection
