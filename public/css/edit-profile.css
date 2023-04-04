@@ -92,9 +92,10 @@
     color: #000;
 }
 .bottom_container {
-    width: 100%;
+    width: 90%;
     height: 25%;
     display: flex;
+    justify-content: center;
 }
 .bottom_container .rating {
     width: 40%;
@@ -119,9 +120,10 @@
     align-items: center;
     margin-top: 15px;
 }
-.bottom_container .button_container a {
+.bottom_container .button_container a,
+.bottom_container .button_container button {
     width: 80%;
-    padding: 15px 25px;
+    padding: 15px 13px;
     text-decoration: none;
     background: #DC9750;
     border-radius: 5px;
@@ -132,6 +134,15 @@
     text-align: center;
     color: #000000;
     text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: ease all .3s;
+}
+
+.bottom_container .button_container a:hover,
+.bottom_container .button_container button:hover {
+    transform: scaleX(1.01);
+    background: #f19b46;
 }
 
 .input_label {

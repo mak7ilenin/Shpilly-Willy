@@ -14,16 +14,16 @@
 </head>
 
 <body>
-    <div class="delete_window">
+    <form action="/profile" method="POST" class="delete_window not-active">
         <div class="txt">
             <p>Are you sure you want to delete this account?</p>
             <p>You can restore your account within 30 days.</p>
         </div>
         <div class="btns">
-            <a href="/profile/delete">Yes</a>
+            <button>Yes</button>
             <a id="noDelete" href="/profile">No</a>
         </div>
-    </div>
+    </form>
 
     <div class="dark"></div>
 
@@ -89,7 +89,7 @@
             </div>
             <div class="bottom_container">
                 <div class="button_container">
-                    <a href="/profile/edit>">Change data</a>
+                    <a href="/profile/edit">Change data</a>
                     <a id="deleteAccount">Delete account</a>
                     <a href="/logout">Logout</a>
                 </div>
@@ -102,12 +102,12 @@
             $('.chosen-container').parent().find('.chosen-container').css({'pointer-events': 'none','opacity': 1});
         });
         $('#deleteAccount').click(() => {
-            $('.delete_window').css('visibility', 'visible');
+            $('.delete_window').removeClass('not-active');
             $('.dark').css('visibility', 'visible');
         })
         $('#noDelete').click(() => {
-            $('.delete_window').css('visibility', 'hidden');
-            $('.dark').css('visibility', 'hidden');
+            $('.dark').removeAttr('style');
+            $('.delete_window').removeClass('not-active');
         });
     </script>
 </body>

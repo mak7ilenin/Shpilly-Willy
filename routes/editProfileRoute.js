@@ -1,6 +1,6 @@
 module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
-    const { profile, myLanguages } = require('../controllers/profileController');
+    const controller = require('../controllers/profileController');
     const { cities, countries, languages } = require('../controllers/registrationController');
 
     // Get all countries
@@ -31,31 +31,39 @@ module.exports = (app, loggedHeader) => {
         if(req.session.userId == undefined) {
             res.redirect('/');
             return;
-        } else {
-            profile(req.session).then(user => {
-                myLanguages(req.session).then(languages => {
-                    loggedHeader(req.session).then(header => {
-                        res.render('edit-profile', {
-                            header: header,
-                            authUser: req.session,
-                            user: user,
-                            
-                            userLanguages: languages,
-                            languages: languagesList,
-                            countries: countriesList,
-                            cities: citiesList,
-                            userLanguages: languages,
-                            educations: ['High school', 'Vocational school', 'Some college', 
-                            "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
-                            relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
-                            children: ['Do not have children', 'Have children'],
-                            religions: ['Atheism', 'Buddhism', 'Hinduism', 
-                            'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
-                        });
+        }
+        controller.profile(req.session).then(user => {
+            controller.myLanguages(req.session).then(languages => {
+                loggedHeader(req.session).then(header => {
+                    res.render('edit-profile', {
+                        header: header,
+                        authUser: req.session,
+                        user: user,
+                        
+                        userLanguages: languages,
+                        languages: languagesList,
+                        countries: countriesList,
+                        cities: citiesList,
+                        userLanguages: languages,
+                        educations: ['High school', 'Vocational school', 'Some college', 
+                        "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
+                        relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
+                        children: ['Do not have children', 'Have children'],
+                        religions: ['Atheism', 'Buddhism', 'Hinduism', 
+                        'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
                     });
                 });
             });
+        });
+    });
+    router.post('/', function (req, res) {
+        if(req.session.userId == undefined) {
+            res.redirect('/');
+            return;
         }
+        controller.editProfile(req.session.userId).then(user => {
+            
+        });
     });
     app.use('/profile/edit', router);
 }

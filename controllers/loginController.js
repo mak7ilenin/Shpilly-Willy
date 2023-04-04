@@ -1,5 +1,4 @@
-exports.login = async function(username, password, session) {
-    const { Op } = require('sequelize');
+exports.login = async function(username, password) {
     const User = require('../models/User');
     let date = new Date();
     let year = date.getFullYear();
@@ -16,14 +15,6 @@ exports.login = async function(username, password, session) {
             password: password
         }
     });
-    let deletedUsers = await User.findAll({
-        where: { deletedAt: { [Op.ne]: null }}
-    });
-    for (let i = 0; i < deletedUsers.length; i++) {
-        if(deletedUsers[i].deletedAt == dateNow) {
-    
-        }
-    }
 
     if(user != null) { return user }
     else { return null };

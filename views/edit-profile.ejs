@@ -15,7 +15,7 @@
 
 <body>
     <%- header %>
-    <div class="user_page">
+    <form action="/" method="POST" class="user_page">
         <div class="photo_container">
             <img src="/upload/private/<%= user.photo %>" alt="">
         </div>
@@ -111,16 +111,16 @@
                 <textarea name="description" placeholder="Description"><%- user.description %></textarea>
             </div>
             <div class="bottom_container">
-                <div class="rating">
-                    <img src="/img/heart 1.png" alt="">
-                    <img src="/img/heart 2.png" alt="">
+                <div class="button_container">
+                    <a href="/profile">Profile</a>
                 </div>
                 <div class="button_container">
-                    <a href="/chat/<%= user.id %>">Start chatting</a>
+                    <button>Edit Info</button>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
+    </form>
 
     <script>
         function getCities(country) {

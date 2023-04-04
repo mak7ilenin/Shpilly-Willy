@@ -213,7 +213,11 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    visibility: hidden;
+    visibility: visible;
+}
+.not-active {
+    transition: ease all .3s;
+    visibility: hidden !important;
 }
 .delete_window .txt {
     height: 30%;
@@ -239,7 +243,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
-.delete_window .btns a {
+.delete_window .btns a,
+.delete_window .btns button {
     background: #7c1c1c;
     border-radius: 5px;
     padding: 15px 90px;
@@ -250,12 +255,15 @@
     text-align: center;
     color: #000000;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
     transition: ease all .2s;
 }
-.delete_window .btns a:last-child {
+.delete_window .btns a {
     background: #DC9750;
 }
-.delete_window .btns a:hover {
+.delete_window .btns a:hover,
+.delete_window .btns button:hover {
     transform: scaleX(1.02);
 } 
 .dark {

@@ -76,15 +76,14 @@ unregisteredHeader().then(data => {
             Language.belongsToMany(User, { through: UserLanguages });
     
             // To fill up database
-            await db.sync({ alter: true });
-            await dbFill();
+            // await db.sync({ alter: true });
+            // await dbFill();
     
             // Routes
             require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
             require('./routes/homeRoute')(app, URheader, loggedHeader);
             require('./routes/chatsRoute')(app, loggedHeader);
             require('./routes/profileRoute')(app, loggedHeader);
-            require('./routes/deleteProfileRoute')(app, loggedHeader);
             require('./routes/editProfileRoute')(app, loggedHeader);
             require('./routes/userProfileRoute')(app, loggedHeader);
             require('./routes/loginRoute')(app, URheader, loggedHeader);
