@@ -1,34 +1,22 @@
 module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
     const controller = require('../controllers/profileController');
-    const { cities, countries, languages } = require('../controllers/registrationController');
+    const { countries, languages, cities, additionalData } = require('../controllers/dataRecieverController');
 
     // Get all countries
-    let countriesList = [];
-    countries().then(data => { 
-        for (let i = 0; i < data.length; i++) {
-            countriesList.push(data[i]);
-        } 
-    });
+    var countriesList = null;
+    countries().then(data => { countriesList = data; });
 
     // Get all languages
-    let languagesList = [];
-    languages().then(data => { 
-        for (let i = 0; i < data.length; i++) {
-            languagesList.push(data[i]);
-        }
-    });
+    var languagesList = null;
+    languages().then(data => { languagesList = data; });
 
     // Get all cities
-    let citiesList = [];
-    cities().then(data => { 
-        for (let i = 0; i < data.length; i++) {
-            citiesList.push(data[i]);
-        } 
-    });
+    var citiesList = null;
+    cities().then(data => { citiesList = data; });
 
     router.get('/', function (req, res) {
-        if(req.session.userId == undefined) {
+        if (req.session.userId == undefined) {
             res.redirect('/');
             return;
         }
@@ -39,30 +27,28 @@ module.exports = (app, loggedHeader) => {
                         header: header,
                         authUser: req.session,
                         user: user,
-                        
+
                         userLanguages: languages,
                         languages: languagesList,
                         countries: countriesList,
                         cities: citiesList,
                         userLanguages: languages,
-                        educations: ['High school', 'Vocational school', 'Some college', 
-                        "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
-                        relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
-                        children: ['Do not have children', 'Have children'],
-                        religions: ['Atheism', 'Buddhism', 'Hinduism', 
-                        'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
+                        educations: additionalData.educations,
+                        relationshipStatus: additionalData.relationshipStatus,
+                        children: additionalData.children,
+                        religions: additionalData.religions
                     });
                 });
             });
         });
     });
     router.post('/', function (req, res) {
-        if(req.session.userId == undefined) {
+        if (req.session.userId == undefined) {
             res.redirect('/');
             return;
         }
         controller.editProfile(req.session.userId).then(user => {
-            
+
         });
     });
     app.use('/profile/edit', router);

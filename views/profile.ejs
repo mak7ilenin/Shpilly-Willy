@@ -53,11 +53,9 @@
                 </div>
                 <div class="input_label languages_div">
                     <label for="language">Languages</label>
-                    <select name="language" id="languagesList" multiple class="chosen-select" data-placeholder="Languages">
-                        <% for (let i = 0; i < languages.length; i++) { %>
-                            <option value="<%= languages[i] %>" selected disabled><%= languages[i] %></option>
-                        <% } %>
-                    </select>
+                    <input name="languages" 
+                        value="<% for (let i = 0; i < languages.length; i++) { %> <%- '&nbsp;/' + languages[i] + '/' %> <% } %>"
+                    readonly />
                 </div>
                 <div>
                     <div class="input_label half_width">

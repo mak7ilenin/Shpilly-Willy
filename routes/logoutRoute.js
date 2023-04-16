@@ -3,17 +3,13 @@ module.exports = (app, URheader) => {
     const { users } = require('../controllers/homeController');
 
     // Get all users
-    let usersList = [];
-    users().then(data => {
-        for (let i = 0; i < data.length; i++) {
-            usersList.push(data[i]);
-        }
-    });
-    
+    let usersList = null;
+    users().then(data => { usersList = data });
+
     router.get('/', function (req, res) {
-        if(req.session.userId != undefined) {
+        if (req.session.userId != undefined) {
             req.session.destroy();
-            
+
             res.render('home', {
                 header: URheader,
                 users: usersList,

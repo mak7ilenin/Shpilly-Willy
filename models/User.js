@@ -2,7 +2,7 @@ const { DataTypes, Model } = require('sequelize');
 const Language = require('./Language');
 const { db } = require('../config/database');
 
-class User extends Model {}
+class User extends Model { }
 User.init(
     {
         id: {
@@ -43,12 +43,12 @@ User.init(
             allowNull: false,
         },
         education: {
-            type: DataTypes.ENUM('High school', 'Vocational school', 'Some college', 
-            "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'),
+            type: DataTypes.ENUM('High school', 'Vocational school', 'Some college',
+                "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'),
         },
         relationshipStatus: {
-            type: DataTypes.ENUM('Single', 'Divorced', 
-            'Widower', 'Other relationship status'),
+            type: DataTypes.ENUM('Single', 'Divorced',
+                'Widower', 'Other relationship status'),
             allowNull: false,
         },
         children: {
@@ -56,8 +56,8 @@ User.init(
             allowNull: false,
         },
         religion: {
-            type: DataTypes.ENUM('Atheism', 'Buddhism', 'Hinduism', 
-            'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other'),
+            type: DataTypes.ENUM('Atheism', 'Buddhism', 'Hinduism',
+                'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other'),
             allowNull: false,
         },
         photo: {

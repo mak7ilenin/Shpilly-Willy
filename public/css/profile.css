@@ -8,6 +8,7 @@
     background: #FFCC99;
     border-radius: 5px;
 }
+
 .user_page .photo_container {
     width: 28%;
     height: 97%;
@@ -15,6 +16,7 @@
     padding: 10px;
     border-radius: 5px;
 }
+
 .user_page .photo_container img {
     width: 100%;
     height: 100%;
@@ -28,6 +30,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .user_page .right_info h2 {
     width: 100%;
     margin: 0;
@@ -39,6 +42,7 @@
     text-align: center;
     color: #922C40;
 }
+
 .user_page .user_info {
     width: 65%;
     height: 95%;
@@ -47,15 +51,18 @@
     justify-content: center;
     margin-right: 0;
 }
+
 .user_page .user_info div {
     width: 90%;
     display: flex;
     justify-content: space-between;
 }
+
 .user_page .user_info input,
 .user_page .user_info select {
     width: 100%;
 }
+
 .description {
     width: 35%;
     height: 86.5%;
@@ -63,6 +70,7 @@
     display: flex;
     align-items: center;
 }
+
 .description textarea {
     width: 100%;
     height: 100%;
@@ -78,6 +86,7 @@
     padding: 7px 15px;
     color: #000;
 }
+
 .description textarea::placeholder {
     color: #000;
     opacity: 0.5;
@@ -91,12 +100,14 @@
     font-size: 28px;
     color: #000;
 }
+
 .bottom_container {
     width: 100%;
     height: 25%;
     display: flex;
     margin-left: 37px;
 }
+
 .bottom_container .button_container {
     width: 100%;
     display: flex;
@@ -104,6 +115,7 @@
     align-items: center;
     margin-top: 15px;
 }
+
 .bottom_container .button_container a {
     width: 30%;
     padding: 15px 0;
@@ -126,19 +138,21 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .input_label label {
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
     font-size: 16px;
-    color: #922C40; 
+    color: #922C40;
 }
+
 .input_label input {
     height: 48px;
     background: #DC9750;
     border-radius: 5px;
     border: none;
-    
+
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
@@ -146,53 +160,16 @@
     text-align: center;
     color: #000000;
 }
-.user_info .languages_div {
-    height: 70px;
-}
-.input_label .chosen-container {
-    height: 100% !important;
-}
-.chosen-container-multi, .chosen-choices {
-    height: 100% !important;
-    /* background-color: #DC9750 !important; */
-    background-image: linear-gradient(#DC9750 1%,#DC9750 100%) !important;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.chosen-container li {
-    height: 80% !important;
-    /* margin-top: 7px !important; */
-    display: flex;
-    margin: 0 -2px !important;
-    align-items: center;
-    justify-content: center;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-.chosen-container li span {
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 800;
-    font-size: 20px;
-    text-align: center;
-    color: #000000;
-}
-.chosen-container li span::after {
-    content: ',';
-    display: inline-block;
-}
-.chosen-container li:nth-last-child(2) span::after {
-    content: '';
-}
-.input_label input, .input_label label {
+
+.input_label input,
+.input_label label {
     width: 100%;
 }
+
 .user_info .half_width {
     width: 47.5% !important;
 }
+
 .delete_window {
     width: 600px;
     height: 200px;
@@ -215,15 +192,18 @@
     align-items: flex-start;
     visibility: visible;
 }
+
 .not-active {
     transition: ease all .3s;
     visibility: hidden !important;
 }
+
 .delete_window .txt {
     height: 30%;
     width: 100%;
     margin-top: 15px;
 }
+
 .delete_window p {
     width: 100%;
     height: max-content;
@@ -235,6 +215,7 @@
     text-align: center;
     color: #000000;
 }
+
 .delete_window .btns {
     width: 100%;
     height: 52%;
@@ -243,6 +224,7 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
 .delete_window .btns a,
 .delete_window .btns button {
     background: #7c1c1c;
@@ -259,13 +241,16 @@
     cursor: pointer;
     transition: ease all .2s;
 }
+
 .delete_window .btns a {
     background: #DC9750;
 }
+
 .delete_window .btns a:hover,
 .delete_window .btns button:hover {
     transform: scaleX(1.02);
-} 
+}
+
 .dark {
     visibility: hidden;
     position: absolute;

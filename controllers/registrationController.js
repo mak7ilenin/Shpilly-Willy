@@ -1,88 +1,29 @@
+const User = require('../models/User');
+const Language = require('../models/Language');
+const UserLanguages = require('../models/UserLanguages');
 
-// All languages
-module.exports.languages = async function() {
-    const Language = require('../models/Language');
-    const languagesList = await Language.findAll();
-    let languages = [];
-    for (let i = 0; i < languagesList.length; i++) {
-        languages.push(languagesList[i].name);
-    }
-    return languages;
-}
-
-// All countries
-module.exports.countries = async function() {
-    const Country = require('../models/Country');
-    const countriesList = await Country.findAll();
-    let countries = [];
-    for (let i = 0; i < countriesList.length; i++) {
-        countries.push(countriesList[i]);
-    }
-    return countries;
-}
-
-// All cities
-module.exports.cities = async function() {
-    const City = require('../models/City');
-    const citiesList = await City.findAll();
-    let cities = [];
-    for (let i = 0; i < citiesList.length; i++) {
-        cities.push(citiesList[i]);
-    }
-    return cities;
-}
-
-// Register user
-module.exports.register = async function(
-    username, password, fullName, email,
-    gender, birthDate, country, city,
-    language, education, relationshipStatus,
-    children, religion, photo, description
-) 
-{
-    const User = require('../models/User');
-    const Language = require('../models/Language');
-    const UserLanguages = require('../models/UserLanguages');
-    await User.findOrCreate({
+module.exports.register = async function (body, image) {
+    const [thisUser] = await User.findOrCreate({
         where: {
-            username: username,
-            password: password,
-            fullName: fullName,
-            email: email,
-            gender: gender,
-            birthDate: birthDate,
-            country: country,
-            city: city,
-            education: education,
-            relationshipStatus: relationshipStatus,
-            children: children,
-            religion: religion,
-            photo: photo,
-            description: description !== undefined ? description : ''
+            username: body.username,
+            password: body.password,
+            fullName: body.fullName,
+            email: body.email,
+            gender: body.gender,
+            birthDate: body.birthDate,
+            country: body.country,
+            city: body.city,
+            education: body.education,
+            relationshipStatus: body.relationshipStatus,
+            children: body.children,
+            religion: body.religion,
+            photo: image,
+            description: body.description !== undefined ? body.description : ''
         }
     });
-    const thisUser = await User.findOne({
-        where: {
-            username: username,
-            password: password,
-            fullName: fullName,
-            email: email,
-            gender: gender,
-            birthDate: birthDate,
-            country: country,
-            city: city,
-            education: education,
-            relationshipStatus: relationshipStatus,
-            children: children,
-            religion: religion,
-            photo: photo,
-            description: description !== undefined ? description : ''
-        },
-        attributes: ['id']
-    });
-    for (let i = 0; i < language.length; i++) {
+    for (let i = 0; i < body.language.length; i++) {
         let thisLanguage = await Language.findOne({
-            where: { name: language[i] },
+            where: { name: body.language[i] },
         });
         await UserLanguages.findOrCreate({
             where: {

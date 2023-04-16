@@ -1,7 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const { db } = require('../config/database');
 
-class Country extends Model {}
+class Country extends Model { }
 Country.init(
     {
         id: {
@@ -16,7 +16,7 @@ Country.init(
         code: {
             type: DataTypes.CHAR(3),
             allowNull: false,
-            unique: true
+            unique: 'code'
         },
     },
     {

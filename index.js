@@ -28,15 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
+    saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false 
+    resave: false
 }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
- // Render header for unlogged user
+// Render header for unlogged user
 var URheader = '';
 unregisteredHeader().then(data => {
     URheader = data;
@@ -49,8 +49,8 @@ unregisteredHeader().then(data => {
 
         // Getting the sequelize instance
         const { db } = require('./config/database');
-        if(db != undefined) {
-            if(db == 'NO_XAMPP') {
+        if (db != undefined) {
+            if (db == 'NO_XAMPP') {
                 clearInterval(interval);
                 return;
             }
@@ -60,25 +60,26 @@ unregisteredHeader().then(data => {
         } else {
             intervalCount++;
         }
-        if(intervalCount >= 50) {
+        if (intervalCount >= 50) {
             clearInterval(interval);
             console.log('The database connection has timed out');
         }
-        
+
         async function init(db) {
             let Country = require('./models/Country');
             let Language = require('./models/Language');
             let City = require('./models/City');
             let User = require('./models/User');
             let UserLanguages = require('./models/UserLanguages');
-        
+            let UserPref = require('./models/UserPref');
+
             User.belongsToMany(Language, { through: UserLanguages });
             Language.belongsToMany(User, { through: UserLanguages });
-    
+
             // To fill up database
-            // await db.sync({ alter: true });
+            await db.sync({ alter: true });
             // await dbFill();
-    
+
             // Routes
             require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
             require('./routes/homeRoute')(app, URheader, loggedHeader);
@@ -88,12 +89,12 @@ unregisteredHeader().then(data => {
             require('./routes/userProfileRoute')(app, loggedHeader);
             require('./routes/loginRoute')(app, URheader, loggedHeader);
             require('./routes/logoutRoute')(app, URheader);
-    
+
             // Check users deletedAt every 24 hours at 12am
-            cron.schedule("0 0 0 * * *", async function() {
+            cron.schedule("0 0 0 * * *", async function () {
                 await User.destroy({
                     where: {
-                        deletedAt: {[Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000))}
+                        deletedAt: { [Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000)) }
                     },
                     force: true
                 });

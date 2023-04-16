@@ -2,7 +2,7 @@ const { DataTypes, Model } = require('sequelize');
 const Country = require('./Country');
 const { db } = require('../config/database');
 
-class City extends Model {}
+class City extends Model { }
 City.init(
     {
         id: {
@@ -26,8 +26,7 @@ City.init(
     {
         sequelize: db,
         modelName: 'city',
-        timestamps: true,
-        paranoid: true
+        timestamps: false,
     }
 );
 module.exports = City;

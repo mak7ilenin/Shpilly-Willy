@@ -53,10 +53,10 @@
                                 <p><%= users[i].gender %></p>
                             </div>
                             <div class="bottom">
-                                <div class="rating">
-                                    <img src="/img/heart 1.png" alt="like">
-                                    <img src="/img/heart 2.png" alt="dislike">
-                                </div>
+                                <form method="GET" action="/chats?user=<%= users[i].id %>" class="rating">
+                                    <img src="/img/heart 1.png" class="like" alt="like">
+                                    <img src="/img/heart 2.png" class="dislike" alt="dislike">
+                                </form>
                                 <div class="buttons"> 
                                     <button><a href="/chat/<%= users[i].id %>">Start chatting</a></button>
                                     <button><a href="/user/<%= users[i].id %>">Check profile</a></button>

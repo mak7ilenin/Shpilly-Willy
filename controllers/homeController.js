@@ -1,4 +1,4 @@
-exports.users = async function() {
+exports.users = async function () {
     const User = require('../models/User');
     const users = await User.findAll();
     var usersList = [];
@@ -8,8 +8,8 @@ exports.users = async function() {
         let nm_date = (user.birthDate).replace('-', '/').replace('-', '/');
         let date = new Date(nm_date);
         let month_diff = Date.now() - new Date(date);
-        let age_dt = new Date(month_diff);   
-        let year = age_dt.getUTCFullYear(); 
+        let age_dt = new Date(month_diff);
+        let year = age_dt.getUTCFullYear();
         var age = Math.abs(year - 1970);
 
         user.birthDate = age;

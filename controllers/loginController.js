@@ -1,4 +1,4 @@
-exports.login = async function(username, password) {
+exports.login = async function (username, password) {
     const User = require('../models/User');
     let date = new Date();
     let year = date.getFullYear();
@@ -16,6 +16,6 @@ exports.login = async function(username, password) {
         }
     });
 
-    if(user != null) { return user }
-    else { return null };
+    if (user != null) return user;
+    return null;
 }

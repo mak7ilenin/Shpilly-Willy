@@ -6,14 +6,14 @@ module.exports = (app, URheader, loggedHeader) => {
         var header = '';
         let cookie = req.session;
         loggedHeader(req.session).then(data => {
-            if(cookie.userId != undefined) { header = data } 
+            if (cookie.userId != undefined) { header = data }
             else { header = URheader }
             res.render('login', { header: header });
         });
     });
     router.post('/', function (req, res) {
         login(req.body.username, req.body.password).then(user => {
-            if(user != null) {
+            if (user != null) {
                 session = req.session;
                 session.userId = user.id;
                 session.username = req.body.username;

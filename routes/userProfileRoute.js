@@ -1,10 +1,11 @@
 module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
     const { userProfile, userLanguages } = require('../controllers/userProfileController');
+    const { additionalData } = require('../controllers/dataRecieverController');
 
     router.get('/:userId', function (req, res) {
         loggedHeader(req.session).then(data => {
-            if(req.session.userId == undefined) {
+            if (req.session.userId == undefined) {
                 res.redirect('/');
                 return;
             } else {
@@ -15,14 +16,12 @@ module.exports = (app, loggedHeader) => {
                                 header: header,
                                 authUser: req.session,
                                 user: user,
-                                
+
                                 userLanguages: languages,
-                                educations: ['High school', 'Vocational school', 'Some college', 
-                                "Bachelor's / master's", 'Doctoral degree', 'Multiple degrees'],
-                                relationshipStatus: ['Single', 'Divorced', 'Widower', 'Other relationship status'],
-                                children: ['Do not have children', 'Have children'],
-                                religions: ['Atheism', 'Buddhism', 'Hinduism', 
-                                'Islam', 'Judaism', 'Catholic Christianity', 'Orthodox Christianity', 'Protestantism', 'Other']
+                                educations: additionalData.educations,
+                                relationshipStatus: additionalData.relationshipStatus,
+                                children: additionalData.children,
+                                religions: additionalData.religions
                             });
                         });
                     })

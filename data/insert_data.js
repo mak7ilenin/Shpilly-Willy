@@ -4,7 +4,7 @@ module.exports.dbFill = async function dbFill() {
     const Country = require('../models/Country');
     const User = require('../models/User');
     const City = require('../models/City');
-    
+
     // Add countries into database
     const countriesData = require('./country.json');
     for (let i = 0; i < countriesData.length; i++) {
@@ -15,7 +15,7 @@ module.exports.dbFill = async function dbFill() {
             }
         });
     }
-    
+
     // Add cities into database
     const citiesData = require('./city.json');
     for (let i = 0; i < citiesData.length; i++) {
@@ -23,9 +23,9 @@ module.exports.dbFill = async function dbFill() {
             where: { code: citiesData[i].code },
             attributes: ['code']
         });
-        if(country != null) {
+        if (country != null) {
             await City.findOrCreate({
-                where: { 
+                where: {
                     name: citiesData[i].name,
                     country: country.code
                 },
@@ -43,7 +43,7 @@ module.exports.dbFill = async function dbFill() {
 
     // Add test users into database
     // User 1
-    await User.findOrCreate({
+    const [testUser1] = await User.findOrCreate({
         where: {
             username: 'dzalex72',
             password: 'admin',
@@ -59,24 +59,6 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Atheism',
             photo: 'me.jpg'
         }
-    });
-    const testUser1 = await User.findOne({
-        where: {
-            username: 'dzalex72',
-            password: 'admin',
-            email: 'maksondzjubenko@gmail.com',
-            fullName: 'Maksim Dzjubenko',
-            gender: 'Male',
-            birthDate: '2004-12-22',
-            country: 'EST',
-            city: 'Tallinn',
-            education: 'Vocational school',
-            relationshipStatus: 'Single',
-            children: 'Do not have children',
-            religion: 'Atheism',
-            photo: 'me.jpg'
-        },
-        attributes: ['id']
     });
     const rus = await Language.findOne({
         where: { name: 'Russian' },
@@ -90,7 +72,7 @@ module.exports.dbFill = async function dbFill() {
     });
 
     // User 2
-    await User.findOrCreate({
+    const [testUser2] = await User.findOrCreate({
         where: {
             username: 'mtalhead',
             password: 'daniel228',
@@ -106,24 +88,6 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Atheism',
             photo: 'daniel.jpg'
         }
-    });
-    const testUser2 = await User.findOne({
-        where: {
-            username: 'mtalhead',
-            password: 'daniel228',
-            email: 'mtalhead24@gmail.com',
-            fullName: 'Daniel Monjane',
-            gender: 'Male',
-            birthDate: '2004-01-24',
-            country: 'EST',
-            city: 'Tartu',
-            education: "Bachelor's / master's",
-            relationshipStatus: 'Single',
-            children: 'Do not have children',
-            religion: 'Atheism',
-            photo: 'daniel.jpg'
-        },
-        attributes: ['id']
     });
     const eng = await Language.findOne({
         where: { name: 'English' },
@@ -137,7 +101,7 @@ module.exports.dbFill = async function dbFill() {
     });
 
     // User 3
-    await User.findOrCreate({
+    const [testUser3] = await User.findOrCreate({
         where: {
             username: 'kalamain228',
             password: 'fizzmain007',
@@ -153,24 +117,6 @@ module.exports.dbFill = async function dbFill() {
             religion: 'Islam',
             photo: 'timothy.png'
         }
-    });
-    const testUser3 = await User.findOne({
-        where: {
-            username: 'kalamain228',
-            password: 'fizzmain007',
-            email: 'timothy@gmail.com',
-            fullName: 'Timothy Main',
-            gender: 'Male',
-            birthDate: '2004-10-22',
-            country: 'EST',
-            city: 'Tallinn',
-            education: 'Some college',
-            relationshipStatus: 'Other relationship status',
-            children: 'Do not have children',
-            religion: 'Islam',
-            photo: 'timothy.png'
-        },
-        attributes: ['id']
     });
     const est = await Language.findOne({
         where: { name: 'Estonian' },
@@ -183,6 +129,6 @@ module.exports.dbFill = async function dbFill() {
         }
     });
 
-    const PORT = process.env.PORT || 3000;
-    console.log(`-- Everything is fine! You can use the app on [PORT: ${PORT}] --`);
+    // const PORT = process.env.PORT || 3000;
+    // console.log(`\n-- Everything is fine! You can use the app on [PORT: ${PORT}] --`);
 }

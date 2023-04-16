@@ -1,7 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const { db } = require('../config/database');
 
-class Language extends Model {}
+class Language extends Model { }
 Language.init(
     {
         id: {
@@ -17,8 +17,7 @@ Language.init(
     {
         sequelize: db,
         modelName: 'language',
-        timestamps: true,
-        paranoid: true
+        timestamps: false,
     }
 );
 module.exports = Language;

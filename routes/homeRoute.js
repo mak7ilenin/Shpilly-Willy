@@ -3,20 +3,16 @@ module.exports = (app, URheader, loggedHeader) => {
     const { users } = require('../controllers/homeController');
 
     // Get all users
-    var usersList = [];
-    users().then(data => {
-        for (let i = 0; i < data.length; i++) {
-            usersList.push(data[i]);
-        }
-    })
+    var usersList = null;
+    users().then(data => { usersList = data });
 
-    router.get('/', function(req, res) {
+    router.get('/', function (req, res) {
         var header = '';
         let cookie = req.session;
         loggedHeader(cookie).then(LGheader => {
-            if(cookie.userId != undefined) { header = LGheader } 
+            if (cookie.userId != undefined) { header = LGheader }
             else { header = URheader; cookie = undefined }
-    
+
             res.render('home', {
                 header: header,
                 users: usersList,
