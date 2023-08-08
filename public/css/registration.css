@@ -5,36 +5,54 @@
     align-items: center;
     justify-content: center;
 }
+
 .registration_form {
     width: 85%;
-    height: 750px;
+    /* height: 750px; */
     background-color: #FFCC99;
     border-radius: 5px;
     font-family: 'Inter';
     font-style: italic;
-    
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .registration_form h2 {
     width: 100%;
-    margin-bottom: -35px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     font-weight: 800;
     font-size: 48px;
     text-align: center;
     color: #922C40;
 }
-.left_side, .right_side {
+
+.left_side,
+.right_side {
     width: 45%;
 }
-.left_side div, .right_side div {
+
+.left_side div,
+.right_side div {
     width: 95%;
     margin: 30px 0;
     display: flex;
     justify-content: space-between;
 }
-input, 
+
+.left_side div:first-child,
+.right_side div:first-child {
+    margin-top: 0;
+}
+
+.left_side div:last-child,
+.right_side div:last-child {
+    margin-bottom: 0;
+}
+
+input,
 select,
 textarea {
     width: 45%;
@@ -47,58 +65,73 @@ textarea {
     font-size: 20px;
     color: #000;
 }
+
 select {
     width: 47.4%;
     height: 62px;
 }
-select > option {
+
+select>option {
     background-color: #ffb870;
 }
+
 /* Change the auto fill color to any color */
 input:-webkit-autofill,
 select:-webkit-autofill,
 textarea:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 45px #DC9750 inset !important;
 }
-select, .birth_input {
+
+select,
+.birth_input {
     color: #00000080;
     font-weight: 800;
 }
-.birth_input, #religionsList {
+
+.birth_input,
+#religionsList {
     width: 100%;
 }
+
 #religionsList {
     margin: 1.8px 0;
 }
+
 .birth_input {
     height: 70px;
     margin-top: 5px;
     padding-right: 10px;
 }
-input::placeholder, 
+
+input::placeholder,
 textarea::placeholder {
     color: #000;
     opacity: 0.5;
     font-weight: 800;
 }
+
 label {
     font-weight: 800;
     font-size: 24px;
     text-align: center;
 }
+
 .chosen-choices span {
     background-color: #DC9750 !important;
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
     background-color: #FFCC99 !important;
 }
+
 .chosen-results {
     -webkit-overflow-scrolling: touch !important;
 }
-.chosen-container-multi, .chosen-choices {
+
+.chosen-container-multi,
+.chosen-choices {
     height: 62px !important;
     background-color: #DC9750 !important;
     border-radius: 5px;
@@ -106,6 +139,7 @@ label {
     border: none !important;
     margin: 0 !important;
 }
+
 .chosen-container-multi .chosen-choices li.search-choice {
     background-image: none !important;
     background-color: #FFCC99 !important;
@@ -114,14 +148,17 @@ label {
     -web-kit-box-shadow: none !important;
     padding: 4px 20px 4px 5px;
 }
+
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
     top: 5.5px;
 }
+
 .chosen-container-active .chosen-choices li.search-field input[type=text] {
     font-weight: 600;
     font-size: 18px;
     color: #000 !important;
 }
+
 .chosen-container-multi .chosen-choices li.search-field input[type=text] {
     color: #000 !important;
     height: 100%;
@@ -132,9 +169,11 @@ label {
     font-weight: 800;
     padding-left: 10px;
 }
+
 .search-field {
     height: 100%;
 }
+
 .chosen-container {
     width: 45%;
     height: 60px;
@@ -145,32 +184,40 @@ label {
     font-size: 18px;
     color: #000;
 }
+
 .chosen-container .chosen-drop {
     background: #ffb870
 }
+
 .gender_container {
     width: 100% !important;
     align-items: center !important;
     justify-content: center !important;
 }
+
 .left_side div:last-child {
     margin-bottom: 0;
     margin-top: 36px;
 }
+
 .left_side div:last-child select {
     height: 72px;
 }
+
 input[type='checkbox'] {
     width: 35px !important;
     accent-color: #DC9750;
     margin: 0 20px;
 }
+
 .gender_container label:nth-child(2) {
     margin-right: 25px !important;
 }
+
 .gender_container {
     margin-left: -15px !important;
 }
+
 .file_input {
     width: 47.4%;
     height: 180px;
@@ -187,6 +234,7 @@ input[type='checkbox'] {
     color: #00000081;
     position: relative;
 }
+
 input[type='file'] {
     width: 95%;
     height: 100%;
@@ -196,6 +244,7 @@ input[type='file'] {
     left: 0;
     opacity: 0;
 }
+
 textarea {
     width: 47.1%;
     height: 173px;
@@ -203,6 +252,7 @@ textarea {
     padding-top: 5px;
     padding-left: 0;
 }
+
 textarea::placeholder {
     text-align: center;
     padding: 0;
@@ -213,13 +263,15 @@ textarea::placeholder {
     font-size: 24px;
     color: #000;
 }
+
 .btn_container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -75px;
+    margin: 20px 0;
 }
+
 .submit_btn {
     width: 600px;
     height: 65px;

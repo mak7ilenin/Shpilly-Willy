@@ -78,7 +78,8 @@ unregisteredHeader().then(data => {
 
             // To fill up database
             await db.sync({ alter: true });
-            // await dbFill();
+            await dbFill();
+            console.log('-- Project deployed on http://localhost:3000 --');
 
             // Routes
             require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);

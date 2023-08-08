@@ -7,19 +7,22 @@
     font-family: 'Inter';
     font-style: italic;
 }
+
 .login_page .left_side {
-    width: 60%;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .login_panel {
-    width: 55%;
-    height: 87%;
+    width: 75%;
+    /* height: 87%; */
     background: #FFCC99;
     border-radius: 5px;
 }
+
 .login_panel h2 {
     width: 100%;
     font-weight: 800;
@@ -28,31 +31,41 @@
     color: #922C40;
     margin: 20px 0;
 }
+
 .login_panel form {
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    justify-content: center;
-    justify-content: center;
+    gap: 20px;
 }
-.login_panel form input, .login_panel form button {
+
+.login_panel form input,
+.login_panel form button {
     width: 82%;
-    height: 65px;
+    height: 50px;
     background: #DC9750;
     border-radius: 5px;
     border: none;
-    margin: 20px 0;
+    margin: 0 auto !important;
 
     font-weight: 800;
     font-size: 22px;
     text-align: center;
     color: #000;
 }
+
+.login_panel form button {
+    margin-top: 30px !important;
+}
+
 .login_panel form input::placeholder {
     font-weight: 800;
     font-size: 24px;
     text-align: center;
     color: #00000080;
 }
+
 .login_panel form button {
     width: 60%;
     font-style: italic;
@@ -61,32 +74,38 @@
     font-size: 25px !important;
     cursor: pointer;
 }
+
 /* Change the auto fill color to any color */
 input:-webkit-autofill,
 select:-webkit-autofill,
 textarea:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 45px #DC9750 inset !important;
 }
+
 .login_panel form input:first-child {
     margin-bottom: 50px;
 }
+
 .login_panel form input:nth-child(2) {
     margin-bottom: 35px;
 }
+
 .login_panel .separation_div {
     width: 100%;
     display: flex;
     align-items: center;
 }
+
 .login_panel .separation_div .line_div {
     width: 42%;
     height: 13px;
     background: #DC9750;
     border-radius: 10px;
 }
+
 .login_panel .separation_div p {
     width: 16%;
     font-weight: 800;
@@ -94,25 +113,27 @@ input:-webkit-autofill:active {
     text-align: center;
     color: #C2874B;
 }
+
 .login_panel .signUp_button {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-bottom: 35px;
 }
+
 .login_panel .signUp_button button {
     width: 60%;
-    height: 65px;
+    height: 50px;
     border-radius: 5px;
     background: #DC9750;
     cursor: pointer;
     border: none;
 }
+
 .login_panel .signUp_button button a {
     display: block;
     width: 100%;
-    padding: 10px 2px;
     font-style: italic;
     font-weight: 900;
     color: #000000ab;
@@ -121,13 +142,16 @@ input:-webkit-autofill:active {
 }
 
 .login_page .right_side {
-    width: 40%;
-    height: 98%;
-    margin: 15px;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    /* height: 98%; */
+    /* margin: 15px; */
 }
+
 .login_page .right_side img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
