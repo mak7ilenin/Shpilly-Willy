@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/edit-profile.css">
     <link rel="stylesheet" href="/css/header.css">
     <title>Edit Profile</title>
@@ -15,134 +15,174 @@
 
 <body>
     <%- header %>
-    <form action="/" method="POST" class="user_page">
-        <div class="photo_container">
-            <img src="/upload/private/<%= user.photo %>" alt="">
-        </div>
-        <div class="right_info">
-            <h2><%= user.fullName %></h2>
-            <div class="user_info">
-                <div class="input_label">
-                    <label for="birthDate">Age (Birth date)</label>
-                    <input type="date" name="birthDate" value="<%= user.birthDate %>">
-                </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="country">Country</label>
-                        <select name="country" id="countriesList" onchange="getCities(this)">
-                            <option value="<%= user.country %>" selected><%= user.country %></option>
-                            <% for (let i = 0; i < countries.length; i++) { %>
-                                <option value="<%=countries[i].code%>"><%= countries[i].name %></option>
-                            <% } %>
+        <form action="/" method="POST" class="user_page">
+            <div class="photo_container">
+                <img src="/upload/private/<%= user.photo %>" alt="">
+            </div>
+            <div class="right_info">
+                <h2>
+                    <%= user.fullName %>
+                </h2>
+                <div class="user_info">
+                    <div class="input_label">
+                        <label for="birthDate">Age (Birth date)</label>
+                        <input type="date" name="birthDate" value="<%= user.birthDate %>">
+                    </div>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="country">Country</label>
+                            <select name="country" id="countriesList" data-country="<%= user.country %>"
+                                onchange="getCities(this)">
+                                <% for (let i=0; i < countries.length; i++) { %>
+                                    <% if (countries[i].name==user.country) { %>
+                                        <option value="<%=countries[i].code%>" selected>
+                                            <%= countries[i].name %>
+                                        </option>
+                                        <% } else { %>
+                                            <option value="<%=countries[i].code%>">
+                                                <%= countries[i].name %>
+                                            </option>
+                                            <% } %>
+                                                <% } %>
+                            </select>
+                        </div>
+                        <div class="input_label half_width">
+                            <label for="city">City</label>
+                            <select name="city" id="citiesList" data-city="<%= user.city %>">
+                                <option id="cityOption" value="<%= user.city %>" selected>
+                                    <%= user.city %>
+                                </option>
+                                <% for (let i=0; i < cities.length; i++) { %>
+                                    <option value="<%=cities[i].name%>" data-value="<%=cities[i].country%>">
+                                        <%= cities[i].name %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input_label languages_div">
+                        <label for="language">Languages</label>
+                        <select name="language" id="languagesList" multiple class="chosen-select"
+                            data-placeholder="Languages">
+                            <% for (let i=0; i < userLanguages.length; i++) { %>
+                                <option value="<%= userLanguages[i] %>" selected>
+                                    <%= userLanguages[i] %>
+                                </option>
+                                <% } %>
+                                    <% for (let i=0; i < languages.length; i++) { %>
+                                        <option value="<%= languages[i] %>">
+                                            <%= languages[i] %>
+                                        </option>
+                                        <% } %>
                         </select>
                     </div>
-    
-                    <div class="input_label half_width">
-                        <label for="city">City</label>
-                        <select name="city" id="citiesList" disabled>
-                            <option id="cityOption" value="<%= user.city %>" selected><%= user.city %></option>
-                            <% for (let i = 0; i < cities.length; i++) { %>
-                                <option value="<%=cities[i].name%>" data-value="<%=cities[i].country%>"><%= cities[i].name %></option>
-                            <% } %>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="gender">Gender</label>
+                            <select name="gender">
+                                <option value="<%= user.gender %>" selected disabled>
+                                    <%= user.gender %>
+                                </option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input_label half_width">
+                            <label for="education">Education</label>
+                            <select name="education">
+                                <option value="<%= user.education %>" selected>
+                                    <%= user.education %>
+                                </option>
+                                <% for (let i=0; i < educations.length; i++) { %>
+                                    <option value="<%=educations[i]%>">
+                                        <%= educations[i] %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="relationshipStatus">Relationship Status</label>
+                            <select name="relationshipStatus">
+                                <option value="<%= user.relationshipStatus %>" selected>
+                                    <%= user.relationshipStatus %>
+                                </option>
+                                <% for (let i=0; i < relationshipStatus.length; i++) { %>
+                                    <option value="<%=relationshipStatus[i]%>">
+                                        <%= relationshipStatus[i] %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="input_label half_width">
+                            <label for="children">Children</label>
+                            <select name="children">
+                                <option value="<%= user.children %>" selected>
+                                    <%= user.children %>
+                                </option>
+                                <% for (let i=0; i < children.length; i++) { %>
+                                    <option value="<%=children[i]%>">
+                                        <%= children[i] %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input_label">
+                        <label for="religion">Religion</label>
+                        <select name="religion">
+                            <option value="<%= user.religion %>" selected>
+                                <%= user.religion %>
+                            </option>
+                            <% for (let i=0; i < religions.length; i++) { %>
+                                <option value="<%=religions[i]%>">
+                                    <%= religions[i] %>
+                                </option>
+                                <% } %>
                         </select>
                     </div>
                 </div>
-                <div class="input_label languages_div">
-                    <label for="language">Languages</label>
-                    <select name="language" id="languagesList" multiple class="chosen-select" data-placeholder="Languages">
-                        <% for (let i = 0; i < userLanguages.length; i++) { %>
-                            <option value="<%= userLanguages[i] %>" selected><%= userLanguages[i] %></option>
-                        <% } %>
-                        <% for (let i = 0; i < languages.length; i++) { %>
-                            <option value="<%= languages[i] %>"><%= languages[i] %></option>
-                        <% } %>
-                    </select>
+                <div class="description">
+                    <textarea name="description" placeholder="Description"><%- user.description %></textarea>
                 </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="gender">Gender</label>
-                        <select name="gender">
-                            <option value="<%= user.gender %>" selected disabled><%= user.gender %></option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select> 
+                <div class="bottom_container">
+                    <div class="button_container">
+                        <a href="/profile">Profile</a>
                     </div>
-                    <div class="input_label half_width">
-                        <label for="education">Education</label>
-                        <select name="education">
-                            <option value="<%= user.education %>" selected><%= user.education %></option>
-                            <% for (let i = 0; i < educations.length; i++) { %>
-                                <option value="<%=educations[i]%>"><%= educations[i] %></option>
-                            <% } %>
-                        </select>   
+                    <div class="button_container">
+                        <button>Edit Info</button>
                     </div>
                 </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="relationshipStatus">Relationship Status</label>
-                        <select name="relationshipStatus">
-                            <option value="<%= user.relationshipStatus %>" selected><%= user.relationshipStatus %></option>
-                            <% for (let i = 0; i < relationshipStatus.length; i++) { %>
-                                <option value="<%=relationshipStatus[i]%>"><%= relationshipStatus[i] %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="input_label half_width">
-                        <label for="children">Children</label>
-                        <select name="children">
-                            <option value="<%= user.children %>" selected><%= user.children %></option>
-                            <% for (let i = 0; i < children.length; i++) { %>
-                                <option value="<%=children[i]%>"><%= children[i] %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                </div>
-                <div class="input_label">
-                    <label for="religion">Religion</label>
-                    <select name="religion">
-                        <option value="<%= user.religion %>" selected><%= user.religion %></option>
-                        <% for (let i = 0; i < religions.length; i++) { %>
-                            <option value="<%=religions[i]%>"><%= religions[i] %></option>
-                        <% } %>
-                    </select>
-                </div>
             </div>
-            <div class="description">
-                <textarea name="description" placeholder="Description"><%- user.description %></textarea>
-            </div>
-            <div class="bottom_container">
-                <div class="button_container">
-                    <a href="/profile">Profile</a>
-                </div>
-                <div class="button_container">
-                    <button>Edit Info</button>
-                </div>
-            </div>
-            </div>
-        </div>
-    </form>
+        </form>
 
-    <script>
-        function getCities(country) {
-            $('#citiesList').removeAttr('disabled');
-            let option = $('#citiesList').children();
-            option.css('display', 'none');
-            
-            for (let i = 0; i < citiesList.length; i++) {
-                if(citiesList[i].getAttribute('data-value') == country.value) {
-                    option[i].style.display = 'unset';
+        <script>
+            function getCities(country) {
+                let option = $('#citiesList').children();
+                option.css('display', 'none');
+
+                for (let i = 0; i < citiesList.length; i++) {
+                    if (citiesList[i].getAttribute('data-value') == country.value) {
+                        option[i].style.display = 'unset';
+                    }
                 }
+                for (let i = 0; i < countriesList.length; i++) {
+                    if (country.value == countriesList[i].getAttribute('value')) {
+                        $('#citiesList').val($('#citiesList').data('city'));
+                    }
+                }
+                option[0].style.display = 'unset';
+                option[0].selected = true;
+                $('#cityOption').val('');
+                $('#cityOption').text('Choose');
             }
-            option[0].style.display = 'unset';
-            option[0].selected = true;
-            $('#cityOption').val('');
-            $('#cityOption').text('Choose');
-            $('#cityOption').attr('disabled', 'disabled');
-        }
-        $(document).ready(() => {
-            $(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
-        })
-    </script>
+            $(document).ready(() => {
+                $(".chosen-select").chosen({ no_results_text: "Oops, nothing found!" });
+                getCities($('#countriesList')[0], $('#countriesList').data('country'));
+                $('#citiesList').val($('#citiesList').data('city'));
+            })
+        </script>
 </body>
 
 </html>
