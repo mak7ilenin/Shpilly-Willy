@@ -25,7 +25,7 @@ exports.loggedHeader = async function(authUser) {
     const header = `
     <header>
         <div class="empty_div">
-            <button class="chats_btn"><a href="/chats">Chats</a></button>
+            <button class="chats_btn"><a href="/profiles">Profiles</a></button>
         </div>
         <a href="/" class="logo">
             <h1>SHPILLY</h1>

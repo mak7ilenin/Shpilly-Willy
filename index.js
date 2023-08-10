@@ -84,7 +84,7 @@ unregisteredHeader().then(data => {
             // Routes
             require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
             require('./routes/homeRoute')(app, URheader, loggedHeader);
-            require('./routes/chatsRoute')(app, loggedHeader);
+            require('./routes/profilesRoute')(app, loggedHeader);
             require('./routes/profileRoute')(app, loggedHeader);
             require('./routes/editProfileRoute')(app, loggedHeader);
             require('./routes/userProfileRoute')(app, loggedHeader);

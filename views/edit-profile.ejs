@@ -17,7 +17,11 @@
     <%- header %>
         <form action="/" method="POST" class="user_page">
             <div class="photo_container">
-                <img src="/upload/private/<%= user.photo %>" alt="">
+                <label for="image" class="file_input">
+                    <input type="file" id="profileImageInput" name="image" accept="image/png, image/jpg, image/jpeg"
+                        onchange="readURL(this);" required>
+                </label>
+                <img id="profileImg" src="/upload/private/<%= user.photo %>" alt="">
             </div>
             <div class="right_info">
                 <h2>
@@ -177,11 +181,20 @@
                 $('#cityOption').val('');
                 $('#cityOption').text('Choose');
             }
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#profileImg').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
             $(document).ready(() => {
                 $(".chosen-select").chosen({ no_results_text: "Oops, nothing found!" });
                 getCities($('#countriesList')[0], $('#countriesList').data('country'));
                 $('#citiesList').val($('#citiesList').data('city'));
-            })
+            });
         </script>
 </body>
 

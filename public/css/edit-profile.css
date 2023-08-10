@@ -8,18 +8,48 @@
     background: #FFCC99;
     border-radius: 5px;
 }
+
 .user_page .photo_container {
     width: 28%;
     height: 97%;
     background: #DC9750;
     padding: 10px;
     border-radius: 5px;
+    position: relative;
 }
+
 .user_page .photo_container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: 10px solid #DC9750;
+    outline-offset: -10px;
+    z-index: 1;
+}
+
+.file_input {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+input[type='file'] {
+    width: 95%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
 }
 
 .user_page .right_info {
@@ -28,6 +58,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .user_page .right_info h2 {
     width: 100%;
     margin: 0;
@@ -39,6 +70,7 @@
     text-align: center;
     color: #922C40;
 }
+
 .user_page .user_info {
     width: 65%;
     height: 95%;
@@ -47,15 +79,18 @@
     justify-content: center;
     margin-right: 0;
 }
+
 .user_page .user_info div {
     width: 90%;
     display: flex;
     justify-content: space-between;
 }
+
 .user_page .user_info input,
 .user_page .user_info select {
     width: 100%;
 }
+
 .description {
     width: 35%;
     height: 86.5%;
@@ -63,6 +98,7 @@
     display: flex;
     align-items: center;
 }
+
 .description textarea {
     width: 100%;
     height: 100%;
@@ -78,6 +114,7 @@
     padding: 7px 15px;
     color: #000;
 }
+
 .description textarea::placeholder {
     color: #000;
     opacity: 0.5;
@@ -91,18 +128,21 @@
     font-size: 28px;
     color: #000;
 }
+
 .bottom_container {
     width: 90%;
     height: 25%;
     display: flex;
     justify-content: center;
 }
+
 .bottom_container .rating {
     width: 40%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
+
 .bottom_container .rating img {
     width: 95px;
     height: 85px;
@@ -110,9 +150,11 @@
     cursor: pointer;
     transition: ease all .3s;
 }
+
 .bottom_container .rating img:hover {
     transform: scale(1.03);
 }
+
 .bottom_container .button_container {
     width: 60%;
     display: flex;
@@ -120,6 +162,7 @@
     align-items: center;
     margin-top: 15px;
 }
+
 .bottom_container .button_container a,
 .bottom_container .button_container button {
     width: 80%;
@@ -151,19 +194,22 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .input_label label {
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
     font-size: 16px;
-    color: #922C40; 
+    color: #922C40;
 }
-.input_label input, .input_label select {
+
+.input_label input,
+.input_label select {
     height: 48px;
     background: #DC9750;
     border-radius: 5px;
     border: none;
-    
+
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
@@ -171,21 +217,26 @@
     text-align: center;
     color: #000000;
 }
+
 .user_info .languages_div {
     height: 70px;
 }
+
 .input_label .chosen-container {
     height: 100% !important;
 }
-.chosen-container-multi, .chosen-choices {
+
+.chosen-container-multi,
+.chosen-choices {
     height: 100% !important;
     /* background-color: #DC9750 !important; */
-    background-image: linear-gradient(#DC9750 1%,#DC9750 100%) !important;
+    background-image: linear-gradient(#DC9750 1%, #DC9750 100%) !important;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .search-choice {
     height: 60% !important;
     /* margin-top: 7px !important; */
@@ -199,6 +250,7 @@
     padding-right: 25px !important;
     /* box-shadow: none !important; */
 }
+
 .chosen-container li span {
     font-family: 'Inter';
     font-style: italic;
@@ -207,19 +259,26 @@
     text-align: center;
     color: #000000;
 }
+
 .search-choice a {
     margin-top: 11px !important;
     margin-right: 2px !important;
 }
+
 .chosen-drop {
     width: max-content !important;
 }
+
 .chosen-results li {
     background: #FFCC99;
 }
-.input_label input, .input_label select, .input_label label {
+
+.input_label input,
+.input_label select,
+.input_label label {
     width: 100%;
 }
+
 .user_info .half_width {
     width: 47.5% !important;
 }

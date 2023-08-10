@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <link rel="stylesheet" href="/css/chats.css">
+    <link rel="stylesheet" href="/css/profiles.css">
     <link rel="stylesheet" href="/css/header.css">
-    <title>Online Chats</title>
+    <title>Online Profiles</title>
 </head>
 
 <body>
     <%- header %>
-        <div class="chats_page">
+        <div class="profiles_page">
             <div class="filter_panel">
-                <form action="/chats" method="POST">
+                <form action="/profiles" method="POST">
                     <div>
                         <label for="age">Age</label>
                         <input type="number" name="age" min="14" max="100" placeholder="Age">
@@ -56,7 +56,7 @@
                                     </p>
                                 </div>
                                 <div class="bottom">
-                                    <form method="GET" action="/chats?user=<%= users[i].id %>" class="rating">
+                                    <form method="GET" action="/profiles?user=<%= users[i].id %>" class="rating">
                                         <img src="/img/heart 1.png" class="like" alt="like">
                                         <img src="/img/heart 2.png" class="dislike" alt="dislike">
                                     </form>

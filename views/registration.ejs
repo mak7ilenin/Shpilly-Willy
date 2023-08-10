@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/registration.css">
     <link rel="stylesheet" href="/css/header.css">
     <title>Registration</title>
@@ -15,121 +15,143 @@
 
 <body>
     <%- header %>
-    <div class="registration_container">
-        <form action="/registration" method="POST" enctype="multipart/form-data" class="registration_form">
-            <h2>Registration</h2>
-            <div class="left_side">
-                <div>
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                </div>
-                <div>
-                    <input type="text" name="fullName" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <div class="gender_container">
-                    <input type="checkbox" class="gender_checkbox" name="gender" value="male">
-                    <label for="gender">Male</label>
-    
-                    <input type="checkbox" class="gender_checkbox" name="gender" value="female">
-                    <label for="gender">Female</label>
-                </div>
-                <div>
-                    <input type="date" name="birthDate" class="birth_input" required>
-                </div>
-                <div>
-                    <select name="country" id="countriesList" onchange="getCities(this)" selected="Choose">
-                        <option value="" selected disabled hidden>Choose</option>
-                        <% for (let i = 0; i < countries.length; i++) { %>
-                            <option value="<%=countries[i].code%>"><%= countries[i].name %></option>
-                        <% } %>
-                    </select>
-                    <select name="city" id="citiesList" disabled>
-                        <option value="" selected disabled hidden>Choose</option>
-                        <% for (let i = 0; i < cities.length; i++) { %>
-                            <option value="<%=cities[i].name%>" data-value="<%=cities[i].country%>"><%= cities[i].name %></option>
-                        <% } %>
-                    </select>
-                </div>
-            </div>
-            <div class="right_side">
-                <div>       
-                    <select name="language" id="languagesList" 
-                        multiple class="chosen-select" data-placeholder="Languages"
-                    >
-                        <!-- <option value="" selected disabled>Language</option> -->
-                        <% for (let i = 0; i < languages.length; i++) { %>
-                            <option value="<%=languages[i].name%>"><%= languages[i].name %></option>
-                        <% } %>
-                    </select>
-                    <select name="education" id="educationsList">
-                        <option value="" selected disabled hidden>Education</option>
-                        <% for (let i = 0; i < educations.length; i++) { %>
-                            <option value="<%=educations[i]%>"><%= educations[i] %></option>
-                        <% } %>
-                    </select>               
-                </div>
-                <div>
-                    <select name="relationshipStatus" id="relationshipStatusList">
-                        <option value="" selected disabled hidden>Relationship status</option>
-                        <% for (let i = 0; i < relationshipStatus.length; i++) { %>
-                            <option value="<%=relationshipStatus[i]%>"><%= relationshipStatus[i] %></option>
-                        <% } %>
-                    </select>
-                    <select name="children" id="childrenList">
-                        <option value="" selected disabled hidden>Children</option>
-                        <% for (let i = 0; i < children.length; i++) { %>
-                            <option value="<%=children[i]%>"><%= children[i] %></option>
-                        <% } %>
-                    </select>
-                </div>
-                <div>
-                    <select name="religion" id="religionsList">
-                        <option value="" selected disabled hidden>Religion</option>
-                        <% for (let i = 0; i < religions.length; i++) { %>
-                            <option value="<%=religions[i]%>"><%= religions[i] %></option>
-                        <% } %>
-                    </select>
-                </div>
-                <div>
-                    <label for="image" class="file_input">
-                        Photo
-                        <input type="file" id="inputFile" name="image" accept="image/png, image/jpg, image/jpeg" required>
-                    </label>
-                    <textarea name="description" placeholder="Description"></textarea>
-                </div>
-            </div>
-            <div class="btn_container">
-                <button type="submit" class="submit_btn">Register</button>
-            </div>
-        </form>
-    </div>
-    <script>
-        $('.gender_checkbox').click(function() {
-            $('.gender_checkbox').prop('checked', false);
-            $(this).prop('checked', true);
-        });
+        <div class="registration_container">
+            <form action="/registration" method="POST" enctype="multipart/form-data" class="registration_form">
+                <h2>Registration</h2>
+                <div class="left_side">
+                    <div>
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="gender_container">
+                        <input type="checkbox" class="gender_checkbox" name="gender" value="male">
+                        <label for="gender">Male</label>
 
-        function getCities(country) {
-            $('#citiesList').removeAttr('disabled');
-            let option = $('#citiesList').children();
-            option.css('display', 'none');
-            
-            for (let i = 0; i < citiesList.length; i++) {
-                if(citiesList[i].getAttribute('data-value') == country.value) {
-                    option[i].style.display = 'unset';
+                        <input type="checkbox" class="gender_checkbox" name="gender" value="female">
+                        <label for="gender">Female</label>
+                    </div>
+                    <div>
+                        <input type="date" name="birthDate" class="birth_input" required>
+                    </div>
+                    <div>
+                        <select name="country" id="countriesList" onchange="getCities(this)" selected="Choose">
+                            <option value="" selected disabled hidden>Country</option>
+                            <% for (let i=0; i < countries.length; i++) { %>
+                                <option value="<%=countries[i].code%>">
+                                    <%= countries[i].name %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <select name="city" id="citiesList" disabled>
+                            <option value="" selected disabled hidden>City</option>
+                            <% for (let i=0; i < cities.length; i++) { %>
+                                <option value="<%=cities[i].name%>" data-value="<%=cities[i].country%>">
+                                    <%= cities[i].name %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="right_side">
+                    <div>
+                        <select name="language" id="languagesList" multiple class="chosen-select"
+                            data-placeholder="Languages">
+                            <!-- <option value="" selected disabled>Language</option> -->
+                            <% for (let i=0; i < languages.length; i++) { %>
+                                <option value="<%=languages[i].name%>">
+                                    <%= languages[i].name %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <select name="education" id="educationsList">
+                            <option value="" selected disabled hidden>Education</option>
+                            <% for (let i=0; i < educations.length; i++) { %>
+                                <option value="<%=educations[i]%>">
+                                    <%= educations[i] %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="relationshipStatus" id="relationshipStatusList">
+                            <option value="" selected disabled hidden>Relationship status</option>
+                            <% for (let i=0; i < relationshipStatus.length; i++) { %>
+                                <option value="<%=relationshipStatus[i]%>">
+                                    <%= relationshipStatus[i] %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <select name="children" id="childrenList">
+                            <option value="" selected disabled hidden>Children</option>
+                            <% for (let i=0; i < children.length; i++) { %>
+                                <option value="<%=children[i]%>">
+                                    <%= children[i] %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="religion" id="religionsList">
+                            <option value="" selected disabled hidden>Religion</option>
+                            <% for (let i=0; i < religions.length; i++) { %>
+                                <option value="<%=religions[i]%>">
+                                    <%= religions[i] %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="image" class="file_input">
+                            Photo
+                            <input type="file" id="inputFile" name="image" accept="image/png, image/jpg, image/jpeg"
+                                onchange="readURL(this)" required>
+                            <img id="uploadedPhoto" alt="">
+                        </label>
+                        <textarea name="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="btn_container">
+                    <button type="submit" class="submit_btn">Register</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            $('.gender_checkbox').click(function () {
+                $('.gender_checkbox').prop('checked', false);
+                $(this).prop('checked', true);
+            });
+
+            function getCities(country) {
+                $('#citiesList').removeAttr('disabled');
+                let option = $('#citiesList').children();
+                option.css('display', 'none');
+
+                for (let i = 0; i < citiesList.length; i++) {
+                    if (citiesList[i].getAttribute('data-value') == country.value) {
+                        option[i].style.display = 'unset';
+                    }
+                }
+                option[0].style.display = 'unset';
+                option[0].selected = true;
+
+            }
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#uploadedPhoto').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
-            option[0].style.display = 'unset';
-            option[0].selected = true;
-            
-        }
-        $(document).ready(() => {
-            $(".chosen-select").chosen({no_results_text: "Oops, nothing found!"});
-        })
-
-
-    </script>
+            $(document).ready(() => {
+                $(".chosen-select").chosen({ no_results_text: "Oops, nothing found!" });
+            })
+        </script>
 </body>
 
 </html>
