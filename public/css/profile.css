@@ -65,8 +65,8 @@
 
 .description {
     width: 35%;
-    height: 86.5%;
-    margin-top: 27px;
+    height: 88.8%;
+    margin-top: 20px;
     display: flex;
     align-items: center;
 }
@@ -79,12 +79,18 @@
     border: none;
     resize: none;
 
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+    box-sizing: border-box;
+
     font-family: 'Inter';
     font-style: italic;
     font-weight: 700;
     font-size: 22px;
-    padding: 7px 15px;
+    /* padding: 7px 15px; */
     color: #000;
+    text-align: left;
 }
 
 .description textarea::placeholder {
@@ -156,7 +162,7 @@
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     color: #000000;
 }
@@ -191,11 +197,6 @@
     flex-wrap: wrap;
     align-items: flex-start;
     visibility: visible;
-}
-
-.not-active {
-    transition: ease all .3s;
-    visibility: hidden !important;
 }
 
 .delete_window .txt {

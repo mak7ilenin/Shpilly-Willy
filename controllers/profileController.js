@@ -20,20 +20,29 @@ exports.profile = async function (me) {
 }
 
 exports.myLanguages = async function (me) {
-    let languagesId = await UserLanguages.findAll({ where: { userId: me.userId } });
+    let languagesId = await UserLanguages.findAll({
+        where: { userId: me.userId },
+        attributes: ['languageId']
+    });
     let languages = [];
     for (let i = 0; i < languagesId.length; i++) {
-        let languageName = await Language.findOne({ where: { id: languagesId[i].id } });
+        let languageName = await Language.findOne({ where: { id: languagesId[i].languageId } });
         languages.push(languageName.name);
     }
     return languages;
 }
 
-exports.editProfile = async function (id) {
-    const user = await User.findOne({
-        where: {
-            id: id
-        }
-    });
-    return user;
+exports.editProfile = async function (id, body, photo) {
+    const languages = Array.isArray(body.language) ? body.language : new Array(body.language);
+    delete body.languages;
+    body.photo = photo;
+    await User.update(body, { where: { id: id } });
+    await UserLanguages.destroy({ where: { userId: id } });
+    for (let i = 0; i < languages.length; i++) {
+        let language = await Language.findOne({ where: { name: languages[i] } });
+        UserLanguages.create({
+            userId: id,
+            languageId: language.id
+        });
+    }
 }

@@ -44,9 +44,46 @@ unregisteredHeader().then(data => {
 
 (async function configureDb() {
     await createDb();
+    async function init(db) {
+        let Country = require('./models/Country');
+        let Language = require('./models/Language');
+        let City = require('./models/City');
+        let User = require('./models/User');
+        let UserLanguages = require('./models/UserLanguages');
+        let UserPref = require('./models/UserPref');
+
+        User.belongsToMany(Language, { through: UserLanguages });
+        Language.belongsToMany(User, { through: UserLanguages });
+        Country.hasMany(City, { foreignKey: 'country' });
+
+        // To fill up database
+        await db.sync({ alter: true });
+        // await dbFill();
+        console.log('-- Project deployed on http://localhost:3000 --');
+
+        // Routes
+        require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
+        require('./routes/homeRoute')(app, URheader, loggedHeader);
+        require('./routes/profilesRoute')(app, loggedHeader);
+        require('./routes/profileRoute')(app, loggedHeader);
+        require('./routes/editProfileRoute')(app, loggedHeader, __dirname);
+        require('./routes/userProfileRoute')(app, loggedHeader);
+        require('./routes/loginRoute')(app, URheader, loggedHeader);
+        require('./routes/logoutRoute')(app, URheader);
+
+        // Check users deletedAt every 24 hours at 12am
+        cron.schedule("0 0 0 * * *", async function () {
+            await User.destroy({
+                where: {
+                    deletedAt: { [Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000)) }
+                },
+                force: true
+            });
+        });
+    }
+
     let intervalCount = 0;
     let interval = setInterval(() => {
-
         // Getting the sequelize instance
         const { db } = require('./config/database');
         if (db != undefined) {
@@ -63,43 +100,6 @@ unregisteredHeader().then(data => {
         if (intervalCount >= 50) {
             clearInterval(interval);
             console.log('The database connection has timed out');
-        }
-
-        async function init(db) {
-            let Country = require('./models/Country');
-            let Language = require('./models/Language');
-            let City = require('./models/City');
-            let User = require('./models/User');
-            let UserLanguages = require('./models/UserLanguages');
-            let UserPref = require('./models/UserPref');
-
-            User.belongsToMany(Language, { through: UserLanguages });
-            Language.belongsToMany(User, { through: UserLanguages });
-
-            // To fill up database
-            await db.sync({ alter: true });
-            await dbFill();
-            console.log('-- Project deployed on http://localhost:3000 --');
-
-            // Routes
-            require('./routes/registrationRoute')(app, __dirname, URheader, loggedHeader);
-            require('./routes/homeRoute')(app, URheader, loggedHeader);
-            require('./routes/profilesRoute')(app, loggedHeader);
-            require('./routes/profileRoute')(app, loggedHeader);
-            require('./routes/editProfileRoute')(app, loggedHeader);
-            require('./routes/userProfileRoute')(app, loggedHeader);
-            require('./routes/loginRoute')(app, URheader, loggedHeader);
-            require('./routes/logoutRoute')(app, URheader);
-
-            // Check users deletedAt every 24 hours at 12am
-            cron.schedule("0 0 0 * * *", async function () {
-                await User.destroy({
-                    where: {
-                        deletedAt: { [Op.lte]: new Date(Date.now() - (1860 * 60 * 24 * 1000)) }
-                    },
-                    force: true
-                });
-            });
         }
     }, 100);
 })();

@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/header.css">
     <title>My profile</title>
 </head>
 
 <body>
-    <form action="/profile" method="POST" class="delete_window not-active">
+    <form action="/profile" method="POST" class="delete_window" style="display: none;">
         <div class="txt">
             <p>Are you sure you want to delete this account?</p>
             <p>You can restore your account within 30 days.</p>
         </div>
         <div class="btns">
             <button>Yes</button>
-            <a id="noDelete" href="/profile">No</a>
+            <a id="noDelete">No</a>
         </div>
     </form>
 
@@ -29,85 +29,87 @@
 
     <%- header %>
 
-    <div class="user_page">
-        <div class="photo_container">
-            <img src="/upload/private/<%= user.photo %>" alt="">
+        <div class="user_page">
+            <div class="photo_container">
+                <img src="/upload/private/<%= user.photo %>" alt="">
+            </div>
+            <div class="right_info">
+                <h2>
+                    <%= user.fullName %>
+                </h2>
+                <div class="user_info">
+                    <div class="input_label">
+                        <label for="age">Age (Birth date)</label>
+                        <input type="text" name="age" value="<%= user.age %> years (<%= user.birthDate %>)" readonly>
+                    </div>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="country">Country</label>
+                            <input type="text" value="<%= user.country %>" readonly>
+                        </div>
+
+                        <div class="input_label half_width">
+                            <label for="city">City</label>
+                            <input type="text" value="<%= user.city %>" readonly>
+                        </div>
+                    </div>
+                    <div class="input_label languages_div">
+                        <label for="language">Languages</label>
+                        <input name="languages"
+                            value="<% for (let i = 0; i < languages.length; i++) { %> <%- '&nbsp;/' + languages[i] + '/' %> <% } %>"
+                            readonly />
+                    </div>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="gender">Gender</label>
+                            <input type="text" value="<%= user.gender %>" readonly>
+                        </div>
+                        <div class="input_label half_width">
+                            <label for="education">Education</label>
+                            <input type="text" value="<%= user.education %>" readonly>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_label half_width">
+                            <label for="relationshipStatus">Relationship Status</label>
+                            <input type="text" value="<%= user.relationshipStatus %>" readonly>
+                        </div>
+                        <div class="input_label half_width">
+                            <label for="children">Children</label>
+                            <input type="text" value="<%= user.children %>" readonly>
+                        </div>
+                    </div>
+                    <div class="input_label">
+                        <label for="religion">Religion</label>
+                        <input type="text" value="<%= user.religion %>" readonly>
+                    </div>
+                </div>
+                <div class="description">
+                    <textarea name="description" placeholder="Description" readonly><%= user.description %></textarea>
+                </div>
+                <div class="bottom_container">
+                    <div class="button_container">
+                        <a href="/profile/edit">Change data</a>
+                        <a id="deleteAccount">Delete account</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="right_info">
-            <h2><%= user.fullName %></h2>
-            <div class="user_info">
-                <div class="input_label">
-                    <label for="age">Age (Birth date)</label>
-                    <input type="text" name="age" value="<%= user.age %> years (<%= user.birthDate %>)" readonly>
-                </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="country">Country</label>
-                        <input type="text" value="<%= user.country %>" readonly>
-                    </div>
-    
-                    <div class="input_label half_width">
-                        <label for="city">City</label>
-                        <input type="text" value="<%= user.city %>" readonly>
-                    </div>
-                </div>
-                <div class="input_label languages_div">
-                    <label for="language">Languages</label>
-                    <input name="languages" 
-                        value="<% for (let i = 0; i < languages.length; i++) { %> <%- '&nbsp;/' + languages[i] + '/' %> <% } %>"
-                    readonly />
-                </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="gender">Gender</label>
-                        <input type="text" value="<%= user.gender %>" readonly>
-                    </div>
-                    <div class="input_label half_width">
-                        <label for="education">Education</label>
-                        <input type="text" value="<%= user.education %>" readonly> 
-                    </div>
-                </div>
-                <div>
-                    <div class="input_label half_width">
-                        <label for="relationshipStatus">Relationship Status</label>
-                        <input type="text" value="<%= user.relationshipStatus %>" readonly>
-                    </div>
-                    <div class="input_label half_width">
-                        <label for="children">Children</label>
-                        <input type="text" value="<%= user.children %>" readonly>
-                    </div>
-                </div>
-                <div class="input_label">
-                    <label for="religion">Religion</label>
-                    <input type="text" value="<%= user.religion %>" readonly>
-                </div>
-            </div>
-            <div class="description">
-                <textarea name="description" placeholder="Description" readonly></textarea>
-            </div>
-            <div class="bottom_container">
-                <div class="button_container">
-                    <a href="/profile/edit">Change data</a>
-                    <a id="deleteAccount">Delete account</a>
-                    <a href="/logout">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        $(document).ready(() => {
-            $('.chosen-select').chosen();
-            $('.chosen-container').parent().find('.chosen-container').css({'pointer-events': 'none','opacity': 1});
-        });
-        $('#deleteAccount').click(() => {
-            $('.delete_window').removeClass('not-active');
-            $('.dark').css('visibility', 'visible');
-        })
-        $('#noDelete').click(() => {
-            $('.dark').removeAttr('style');
-            $('.delete_window').removeClass('not-active');
-        });
-    </script>
+        <script>
+            $(document).ready(() => {
+                $('.chosen-select').chosen();
+                $('.chosen-container').parent().find('.chosen-container').css({ 'pointer-events': 'none', 'opacity': 1 });
+            });
+            $('#deleteAccount').click(() => {
+                $('.delete_window').show();
+                $('.dark').css('visibility', 'visible');
+            })
+            $('#noDelete').click(() => {
+                $('.dark').removeAttr('style');
+                $('.delete_window').hide();
+            });
+        </script>
 </body>
 
 </html>

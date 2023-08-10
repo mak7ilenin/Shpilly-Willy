@@ -2,6 +2,7 @@ module.exports = (app, __dirname, URheader, loggedHeader) => {
     const { register } = require('../controllers/registrationController');
     const { countries, languages, cities, additionalData } = require('../controllers/dataRecieverController');
     const router = require('express').Router();
+    const fs = require('fs');
 
     // Get all countries
     var countriesList;
@@ -48,22 +49,24 @@ module.exports = (app, __dirname, URheader, loggedHeader) => {
             return;
         }
 
-        // Get the file that was set to field named "image"
         const { image } = req.files;
-        // If no image submitted, exit
         if (!image) return res.sendStatus(400);
         // Create upload directory if not exists
-        const fs = require('fs');
         const uploadDir = __dirname + '/public/upload/private';
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }
 
         try {
-            register(req.body, image.name);
-            // Move the uploaded image to our upload folder
-            image.mv(__dirname + '/public/upload/private/' + image.name);
-            res.redirect('/login');
+            register(req.body, image.name).then(() => {
+                // Move the uploaded image to upload folder
+                try {
+                    image.mv(__dirname + '/public/upload/private/' + image.name);
+                } catch (error) {
+                    console.log(error);
+                }
+                res.redirect('/login');
+            });
         } catch (error) {
             res.status(500).send({
                 message: 'Something went wrong while registering a new account ...'

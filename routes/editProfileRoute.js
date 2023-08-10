@@ -1,5 +1,6 @@
-module.exports = (app, loggedHeader) => {
+module.exports = (app, loggedHeader, __dirname) => {
     const router = require('express').Router();
+    const fs = require('fs');
     const controller = require('../controllers/profileController');
     const { countries, languages, cities, additionalData } = require('../controllers/dataRecieverController');
 
@@ -47,9 +48,27 @@ module.exports = (app, loggedHeader) => {
             res.redirect('/');
             return;
         }
-        controller.editProfile(req.session.userId).then(user => {
-
-        });
+        if (req.files != null) {
+            const { photo } = req.files;
+            if (!photo) return res.sendStatus(400);
+            // Create upload directory if not exists
+            const uploadDir = __dirname + '/public/upload/private';
+            if (!fs.existsSync(uploadDir)) {
+                fs.mkdirSync(uploadDir);
+            }
+        }
+        if (req.files != null) {
+            // Move the uploaded image to upload folder
+            const { photo } = req.files;
+            controller.editProfile(req.session.userId, req.body, photo.name).then(() => {
+                res.redirect('/profile');
+            });
+            photo.mv(__dirname + '/public/upload/private/' + photo.name);
+        } else {
+            controller.editProfile(req.session.userId, req.body, undefined).then(() => {
+                res.redirect('/profile');
+            });
+        }
     });
     app.use('/profile/edit', router);
 }

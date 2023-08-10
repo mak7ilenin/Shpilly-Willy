@@ -3,7 +3,7 @@ const Language = require('../models/Language');
 const UserLanguages = require('../models/UserLanguages');
 
 module.exports.register = async function (body, image) {
-    const [thisUser] = await User.findOrCreate({
+    const [thisUser, created] = await User.findOrCreate({
         where: {
             username: body.username,
             password: body.password,
@@ -21,15 +21,14 @@ module.exports.register = async function (body, image) {
             description: body.description !== undefined ? body.description : ''
         }
     });
-    for (let i = 0; i < body.language.length; i++) {
+    const languages = Array.isArray(body.language) ? body.language : new Array(body.language);
+    for (let i = 0; i < languages.length; i++) {
         let thisLanguage = await Language.findOne({
-            where: { name: body.language[i] },
+            where: { name: languages[i] },
         });
-        await UserLanguages.findOrCreate({
-            where: {
-                userId: thisUser.id,
-                languageId: thisLanguage.id
-            }
+        await UserLanguages.create({
+            userId: thisUser.id,
+            languageId: thisLanguage.id
         });
     }
 }

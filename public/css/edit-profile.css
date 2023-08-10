@@ -93,8 +93,8 @@ input[type='file'] {
 
 .description {
     width: 35%;
-    height: 86.5%;
-    margin-top: 27px;
+    height: 89%;
+    margin-top: 20px;
     display: flex;
     align-items: center;
 }
@@ -107,11 +107,16 @@ input[type='file'] {
     border: none;
     resize: none;
 
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+    box-sizing: border-box;
+
     font-family: 'Inter';
     font-style: italic;
     font-weight: 700;
     font-size: 22px;
-    padding: 7px 15px;
+    /* padding: 7px 15px; */
     color: #000;
 }
 
@@ -213,7 +218,7 @@ input[type='file'] {
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     color: #000000;
 }
@@ -228,8 +233,8 @@ input[type='file'] {
 
 .chosen-container-multi,
 .chosen-choices {
+    width: 100%;
     height: 100% !important;
-    /* background-color: #DC9750 !important; */
     background-image: linear-gradient(#DC9750 1%, #DC9750 100%) !important;
     border-radius: 5px;
     display: flex;
@@ -237,21 +242,25 @@ input[type='file'] {
     align-items: center;
 }
 
+.chosen-choices {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+}
+
 .search-choice {
     height: 60% !important;
-    /* margin-top: 7px !important; */
     display: flex;
-    margin: 0 -2px !important;
+    margin: 0 2px !important;
     align-items: center;
     justify-content: center;
     background: transparent !important;
     border: none !important;
     padding-left: 10px !important;
     padding-right: 25px !important;
-    /* box-shadow: none !important; */
 }
 
-.chosen-container li span {
+.chosen-container li span:not(.no-results > span) {
     font-family: 'Inter';
     font-style: italic;
     font-weight: 800;
@@ -261,8 +270,12 @@ input[type='file'] {
 }
 
 .search-choice a {
-    margin-top: 11px !important;
+    margin-top: 0 !important;
     margin-right: 2px !important;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    top: auto !important;
 }
 
 .chosen-drop {
@@ -270,7 +283,13 @@ input[type='file'] {
 }
 
 .chosen-results li {
-    background: #FFCC99;
+    background: #FFCC99 !important;
+    font-size: 16px !important;
+}
+
+.chosen-results li span {
+    font-size: 14px;
+    font-weight: 800 !important;
 }
 
 .input_label input,
