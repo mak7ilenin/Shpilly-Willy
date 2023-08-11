@@ -7,7 +7,7 @@ module.exports = (app, loggedHeader) => {
             res.redirect('/');
             return;
         } else {
-            users().then(users => {
+            users(req.session.userId).then(users => {
                 loggedHeader(req.session).then(header => {
                     // Get all users of the opposite sex
                     res.render('profiles', {
@@ -23,7 +23,7 @@ module.exports = (app, loggedHeader) => {
 
     router.post('/', async (req, res) => {
         if (!req.body.age && !req.body.lookingFor && !req.body.country && !req.body.city) {
-            users().then(users => {
+            users(req.session.userId).then(users => {
                 loggedHeader(req.session).then(header => {
                     res.status(404).render('profiles', {
                         header: header,
@@ -35,7 +35,7 @@ module.exports = (app, loggedHeader) => {
             return;
         }
         loggedHeader(req.session).then(header => {
-            filter(req.body)
+            filter(req.body, req.session.userId)
                 .then(data => {
                     res.render('profiles', {
                         header: header,

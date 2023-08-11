@@ -1,8 +1,15 @@
 const User = require('../models/User');
 const Country = require('../models/Country');
+const { Op } = require("sequelize");
 
-exports.users = async function () {
-    let users = await User.findAll();
+exports.users = async function (authUserId) {
+    const currentUser = await User.findByPk(authUserId);
+    console.log(currentUser);
+    let users = await User.findAll({
+        where: {
+            gender: { [Op.notLike]: currentUser.gender }
+        }
+    });
     for (let i = 0; i < users.length; i++) {
         let userCountry = await Country.findOne({
             where: { code: users[i].country }
@@ -21,9 +28,15 @@ exports.users = async function () {
     return users;
 }
 
-exports.filter = async function (body) {
+exports.filter = async function (body, authUserId) {
     let filteredUsers = [];
-    let allUsers = await User.findAll();
+    const currentUser = await User.findByPk(authUserId);
+    console.log(currentUser);
+    let allUsers = await User.findAll({
+        where: {
+            gender: { [Op.notLike]: currentUser.gender }
+        }
+    });
     // Change country code to country name
     for (let i = 0; i < allUsers.length; i++) {
         let user_country = await Country.findOne({

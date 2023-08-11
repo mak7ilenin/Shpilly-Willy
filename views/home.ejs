@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/header.css" />
     <title>Shpilly Willy</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <%- header %>
     <div class="home_page">
-        <ul class="left_side">
-            <% for (let i = 0; i < 3; i++) { %>
-                <li class="person_container" data-id="<%= users[i].id %>">
-                    <div class="photo_container">
-                        <img src="/upload/private/<%= users[i].photo %>" alt="">
-                        <!-- <img src="/upload/private/<%= users[i].photo %>" alt=""> -->
-                    </div>
-                    <div class="right_container">
-                        <div class="info">
-                            <h3><%= users[i].fullName %>, <%= users[i].birthDate %></h3>
-                            <h4><%= users[i].city %></h4>
-                        </div>
-                        <div class="button_container">
-                            <% if(authUser == undefined) { %>
-                                <a href="/login">Start chatting</a>
-                            <% } else { %>
-                                <a href="/chat/<%= users[i].id %>">Start chatting</a>
-                            <% } %>
-                        </div>
-                    </div>
-                </li>
-            <% } %>
-        </ul>
-        <div class="right_side">
-            <div class="img_container">
-                <img src="/img/pexels-asad-photo-maldives-1024960 1.jpg" alt="">
-                <div class="text_container">
-                    <p>FIND YOUR SECOND HALF TODAY! JUST START BROWSING SHPILLY WILLY!</p>
-                    <% if(authUser == undefined) { %>
-                        <a class="main_btn" href="/login">Start browsing</a>
-                        <% } else { %>
-                            <a class="main_btn" href="/chats">Start browsing</a>
-                    <% } %>
-                </div>
+      <ul class="left_side">
+        <% for (let i=0; i < 3; i++) { %>
+        <li class="person_container" data-id="<%= users[i].id %>">
+          <div class="photo_container">
+            <img src="/upload/private/<%= users[i].photo %>" alt="" />
+          </div>
+          <div class="right_container">
+            <div class="info">
+              <h3><%= users[i].fullName %>, <%= users[i].birthDate %></h3>
+              <h4><%= users[i].city %></h4>
             </div>
+            <div class="button_container">
+              <% if(authUser==undefined) { %>
+              <a href="/login">Start chatting</a>
+              <% } else { %>
+              <a href="/chat/<%= users[i].id %>">Start chatting</a>
+              <% } %>
+            </div>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+      <div class="right_side">
+        <div class="img_container">
+          <img src="/img/pexels-asad-photo-maldives-1024960 1.jpg" alt="" />
+          <div class="text_container">
+            <p>
+              FIND YOUR SECOND HALF TODAY! JUST START BROWSING SHPILLY WILLY!
+            </p>
+            <% if(authUser==undefined) { %>
+            <a class="main_btn" href="/login">Start browsing</a>
+            <% } else { %>
+            <a class="main_btn" href="/profiles">Start browsing</a>
+            <% } %>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
