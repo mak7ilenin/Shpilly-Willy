@@ -1,23 +1,30 @@
 module.exports = (app, loggedHeader) => {
     const router = require('express').Router();
-    const { users, filter } = require('../controllers/profilesController');
+    const { users, filter, rateUser } = require('../controllers/profilesController');
 
     router.get('/', async (req, res) => {
         if (req.session.userId == undefined) {
             res.redirect('/');
             return;
         } else {
-            users(req.session.userId).then(users => {
-                loggedHeader(req.session).then(header => {
-                    // Get all users of the opposite sex
-                    res.render('profiles', {
-                        header: header,
-                        users: users,
-                        authUser: req.session,
-                        message: ''
+            if (JSON.stringify(req.query) === "{}") {
+                users(req.session.userId).then(users => {
+                    loggedHeader(req.session).then(header => {
+                        // Get all users of the opposite sex
+                        res.render('profiles', {
+                            header: header,
+                            users: users,
+                            authUser: req.session,
+                            message: ''
+                        });
                     });
                 });
-            });
+            } else {
+                rateUser(req.session.userId, req.query.user, req.query.rated).then(() => {
+                    res.redirect('/profiles');
+                    return;
+                });
+            }
         }
     });
 
@@ -28,7 +35,8 @@ module.exports = (app, loggedHeader) => {
                     res.status(404).render('profiles', {
                         header: header,
                         users: users,
-                        message: 'Please fill in at least one field!'
+                        message: ''
+                        // message: 'Please fill in at least one field!'
                     });
                 });
             });
@@ -44,7 +52,7 @@ module.exports = (app, loggedHeader) => {
                         message: ''
                     });
                 });
-        })
+        });
     });
     app.use('/profiles', router);
 }

@@ -1,6 +1,17 @@
-exports.users = async function () {
-    const User = require('../models/User');
-    const users = await User.findAll();
+const User = require('../models/User');
+const { Op } = require("sequelize");
+
+exports.users = async function (userId) {
+    var users = [];
+    if (userId == null) {
+        users = await User.findAll();
+    } else {
+        users = await User.findAll({
+            where: {
+                id: { [Op.ne]: userId }
+            }
+        });
+    }
     var usersList = [];
     for (let i = 0; i < users.length; i++) {
         let user = users[i].dataValues;
@@ -22,7 +33,6 @@ exports.users = async function () {
     for (let start = 0; start < length; start++) {
         const randomPosition = Math.floor((shuffledUsers.length - start) * Math.random())
         const randomItem = shuffledUsers.splice(randomPosition, 1)
-
         shuffledUsers.push(...randomItem)
     }
     return shuffledUsers;

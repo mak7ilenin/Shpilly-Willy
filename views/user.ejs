@@ -79,10 +79,11 @@
                     <textarea name="description" placeholder="Description" readonly></textarea>
                 </div>
                 <div class="bottom_container">
-                    <div class="rating">
-                        <img src="/img/heart 1.png" alt="">
-                        <img src="/img/heart 2.png" alt="">
-                    </div>
+                    <form method="POST" action="/user/<%= user.id %>" class="rating">
+                        <input type="text" name="rated" class="ratingInput" value="" style="display: none">
+                        <img src="/img/broken-heart.svg" data-rating="dislike" class="rating-button" alt="dislike">
+                        <img src="/img/heart.svg" data-rating="like" class="rating-button" alt="like">
+                    </form>
                     <div class="button_container">
                         <a href="/chat/<%= user.id %>">Start chatting</a>
                     </div>
@@ -93,7 +94,14 @@
             $(document).ready(() => {
                 $('.chosen-select').chosen();
                 $('.chosen-container').parent().find('.chosen-container').css({ 'pointer-events': 'none', 'opacity': 1 });
-            })
+            });
+            $('.rating-button').click(function (e) {
+                e.preventDefault();
+                const ratedStatus = $(this).data('rating');
+                const form = $(this).parent();
+                $('.ratingInput').val(`${ratedStatus}`);
+                form.submit();
+            });
         </script>
 </body>
 

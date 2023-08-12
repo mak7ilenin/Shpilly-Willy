@@ -103,14 +103,18 @@
     justify-content: space-evenly;
 }
 .bottom_container .rating img {
-    width: 95px;
-    height: 85px;
+    /* width: 90px;
+    height: 85px; */
+    height: 90%;
     object-fit: cover;
     cursor: pointer;
-    transition: ease all .3s;
+    opacity: 0.75;
+    transition: ease all .6s;
 }
 .bottom_container .rating img:hover {
-    transform: scale(1.03);
+    /* transform: scale(1.02); */
+    transform: rotate(5deg);
+    opacity: 1;
 }
 .bottom_container .button_container {
     width: 60%;

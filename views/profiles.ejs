@@ -56,9 +56,11 @@
                                     </p>
                                 </div>
                                 <div class="bottom">
-                                    <form method="GET" action="/profiles?user=<%= users[i].id %>" class="rating">
-                                        <img src="/img/heart 1.png" class="like" alt="like">
-                                        <img src="/img/heart 2.png" class="dislike" alt="dislike">
+                                    <form method="GET" action="/profiles" class="rating">
+                                        <input type="number" name="user" value="<%= users[i].id %>" style="display: none">
+                                        <input type="text" name="rated" class="ratingInput" value="" style="display: none">
+                                        <img src="/img/heart 1.png" data-rating="like" class="rating-button" alt="like">
+                                        <img src="/img/heart 2.png" data-rating="dislike" class="rating-button" alt="dislike">
                                     </form>
                                     <div class="buttons">
                                         <button><a href="/chat/<%= users[i].id %>">Start chatting</a></button>
@@ -79,6 +81,13 @@
                 setTimeout(() => {
                     btn.prop('disabled', false);
                 }, 1000);
+            });
+            $('.rating-button').click(function (e) {
+                e.preventDefault();
+                const ratedStatus = $(this).data('rating');
+                const form = $(this).parent();
+                $('.ratingInput').val(`${ratedStatus}`);
+                form.submit();
             });
         </script>
 </body>

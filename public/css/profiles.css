@@ -15,6 +15,7 @@
     background: #FFCC99;
     border-radius: 5px;
 }
+
 .filter_panel form {
     height: 100%;
     display: flex;
@@ -23,15 +24,18 @@
     justify-content: space-between;
     padding: 0 45px;
 }
+
 .filter_panel form div {
     width: 212px;
 }
+
 .filter_panel form div label {
     font-weight: 800;
     font-size: 16px;
     text-align: center;
     color: #922C40;
 }
+
 .filter_panel form input {
     width: 100%;
     height: 37px;
@@ -44,6 +48,7 @@
     text-align: center;
     color: #000000;
 }
+
 .filter_panel form input[type='submit'] {
     width: 212px;
     font-weight: 900;
@@ -54,6 +59,7 @@
     cursor: pointer;
     margin-bottom: 10px;
 }
+
 .filter_panel form input::placeholder {
     font-weight: 900;
     font-size: 20px;
@@ -61,19 +67,22 @@
     color: #00000082;
     font-style: italic;
 }
+
 /* Change the auto fill color to any color */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 45px #DC9750 inset !important;
 }
+
 #message {
     color: #922C40;
     font-family: 'Inter';
     font-style: italic;
     font-weight: 700;
     font-size: 24px;
+    margin: 9px 0;
 }
 
 /* People list */
@@ -81,11 +90,13 @@ input:-webkit-autofill:active {
     width: 85%;
     margin: 0 auto;
 }
+
 .people_container .people_list {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+
 .people_list .person_container {
     display: flex;
     width: 450px;
@@ -94,28 +105,34 @@ input:-webkit-autofill:active {
     margin: 30px 0;
     border-radius: 5px;
 }
+
 .person_container .photo_container {
     width: 35%;
     height: 88%;
     margin: 12px;
 }
+
 .person_container .photo_container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
+
 .people_container .person_info {
     width: 65%;
     margin: 15px 15px 15px 0;
 }
+
 .people_container .person_info .top {
     height: 60%;
 }
+
 .people_container .person_info .top h2,
 .people_container .person_info .top p {
     margin: 0;
 }
+
 .people_container .person_info .top h2 {
     margin-bottom: 10px;
     font-family: 'Inter';
@@ -124,6 +141,7 @@ input:-webkit-autofill:active {
     font-size: 23px;
     color: #000000;
 }
+
 .people_container .person_info .top p {
     font-family: 'Inter';
     font-style: italic;
@@ -131,27 +149,33 @@ input:-webkit-autofill:active {
     font-size: 18px;
     color: #000000;
 }
+
 .person_container .person_info .bottom {
     display: flex;
     height: 40%;
 }
+
 .person_info .bottom .rating {
     width: 40%;
     display: flex;
     align-items: flex-end;
 }
+
 .person_info .bottom .rating img {
     width: 47px;
     height: 42px;
     cursor: pointer;
     transition: ease all .3s;
 }
+
 .person_info .bottom .rating img:hover {
     transform: scale(1.03);
 }
+
 .person_info .bottom .buttons {
     width: 60%;
 }
+
 .person_info .bottom .buttons button {
     width: 100%;
     padding: 5px 10px;
@@ -161,6 +185,7 @@ input:-webkit-autofill:active {
     border: none;
     cursor: pointer;
 }
+
 .person_info .bottom .buttons button a {
     font-family: 'Inter';
     padding: 5px 15px;

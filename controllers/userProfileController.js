@@ -4,14 +4,14 @@ const UserLanguages = require('../models/UserLanguages');
 const Language = require('../models/Language');
 
 exports.userProfile = async function (userId) {
-    const user = await User.findOne({
-        where: { id: userId }
-    });
-    let userCountry = await Country.findOne({
-        where: { code: user.country }
-    });
+    // Find this user
+    const user = await User.findOne({ where: { id: userId } });
+    
+    // Get user's country
+    let userCountry = await Country.findOne({ where: { code: user.country } });
     user.country = userCountry.name;
 
+    // Calculate user's age
     let nm_date = (user.birthDate).replace('-', '/').replace('-', '/');
     let date = new Date(nm_date);
     let month_diff = Date.now() - new Date(date);
@@ -19,9 +19,7 @@ exports.userProfile = async function (userId) {
     let year = age_dt.getUTCFullYear();
     user.age = Math.abs(year - 1970);
 
-    return user;
-}
-exports.userLanguages = async function (userId) {
+    // Get user's languages
     const userLanguages = await UserLanguages.findAll({
         where: { userId: userId }
     });
@@ -32,5 +30,7 @@ exports.userLanguages = async function (userId) {
         });
         languages.push(language);
     }
-    return languages;
+    user.languages = languages;
+
+    return user;
 }
